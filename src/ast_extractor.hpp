@@ -5,9 +5,9 @@
 
 
 struct Node {
-	int id;
+	uint32_t id;
 	std::string type;
-	std::string label;
+	std::string details;
 };
 
 struct Edge { //contains from and to id
@@ -32,6 +32,15 @@ public:
 		edges.push_back({from, to});
 	}
 
-	void exportJson( // TODO:Look and how joern dumps to JSON, try to mirror similar formatting
+	void exportJson(std::string &filename) {
+		std::ofstream out(filename);
+
+		out << "{\n \"nodes:\" \n";
+
+		for (int i = 0; i < nodes.size(); i++) {
+
+		}
+		
+	}
 
 }
