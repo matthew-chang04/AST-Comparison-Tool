@@ -18,7 +18,25 @@ public:
 
 private:
 	ASTContext *Context;
-}
+	Graph out_graph;
+	
+	bool VisitDecl(Decl *d) {
+		// TODO: take useful infomration (might depend on Decl Type)
+
+		SourceLocation nodeLoc = d->getLocation();
+		if (nodeLoc.isValid()) {
+			
+		}
+	}
+
+	bool VisitStmt(Stmt *s) {
+		// TODO: grab usefu, statement info
+	}
+
+	bool VisitExpr(Expr *x) {
+		//TODO: expression info
+	}
+
 
 class parseASTConsumer : public clang::ASTConsumer {
 public:

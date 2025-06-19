@@ -6,9 +6,17 @@
 
 struct Node {
 	uint32_t id;
-	std::string type;
-	std::string details;
+	std::string kind;
+	std::string location;
+	std::string name { "" };
 };
+
+struct Stmt : Node {
+	std::vector<std::string> attributes;
+}
+struct Expr : Stmt {
+	std::string qualType;
+}
 
 struct Edge { //contains from and to id
 	int from;
@@ -23,8 +31,8 @@ class Graph {
 
 public:
 	
-	int addNode(const std::string type&, const std::string label&) {
-		nodes.push_back({node_id, type, label);
+	int addNode(const std::string& kind, const std::string& location, const std::string& name = "") { 
+		nodes.push_back({node_id, type, name});
 		return node_id++;
 	}
 
