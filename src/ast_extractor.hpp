@@ -7,16 +7,12 @@
 struct Node {
 	uint32_t id;
 	std::string kind;
-	std::string location;
-	std::string name { "" };
+	unsigned line;
+	unsigned col;
+	std::string tokName { "" };
+	std::vector<std::string> attributes {};
+	std::string qualType { "" };
 };
-
-struct Stmt : Node {
-	std::vector<std::string> attributes;
-}
-struct Expr : Stmt {
-	std::string qualType;
-}
 
 struct Edge { //contains from and to id
 	int from;
@@ -31,8 +27,8 @@ class Graph {
 
 public:
 	
-	int addNode(const std::string& kind, const std::string& location, const std::string& name = "") { 
-		nodes.push_back({node_id, type, name});
+	int addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName = "", std::vector attributes = {}, std::string qualType = "") { 
+		nodes.push_back({node_id, kind, line, col, tokName, attributes, qualType});
 		return node_id++;
 	}
 
