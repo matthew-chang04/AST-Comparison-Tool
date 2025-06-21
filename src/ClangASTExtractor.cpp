@@ -18,7 +18,7 @@ public:
 
 
 	bool VisitDecl(Decl *d) {
-		/* TODO: take useful infomration
+		/* TODO: 
 			
 			implement a special case for NamedDecl nodes
 			dump location
@@ -28,9 +28,9 @@ public:
 		std::string kind;
 		unsigned line;
 		unsigned col;
-		std::string tokName;
-		std::vector<std::string> attributes;
-		std::string qualType;
+		std::string tokName { "" };
+		std::vector<std::string> attributes {};
+		std::string qualType { "" };
 
 		SourceLocation nodeLoc = d->getLocation();
 		if (!nodeLoc.isValid()) {
@@ -46,11 +46,6 @@ public:
 			if (NamedDecl *ND = llvm::dyn_cast<NamedDecl>(d)) {
 				tokName = ND->getNameAsString();
 			}
-
-
-			
-
-
 		}
 	}
 
@@ -60,6 +55,7 @@ public:
 			populate the attribute list with the bitfield classes 
 			copy overlapping code from Decl, NOTE THAT: you have to change the getLocation to getBeginLoc
 
+			`
 		
 		*/
 
