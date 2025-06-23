@@ -1,5 +1,6 @@
 #include <memory>
 
+#include <clang/Lex/Lexer.h>
 #include <clang/AST/AST.h>
 #include <clang/AST/RecursiveASTVisitor.h>
 #include <clang/Frontend/FrontendAction.h>
@@ -9,8 +10,9 @@
 
 class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
 private:
-	ASTContext *Context;
+	ASTContext *Ctx;
 	Graph out_graph;
+
 
 public:
 
@@ -29,19 +31,24 @@ public:
 		unsigned line;
 		unsigned col;
 		std::string tokName { "" };
-		std::vector<std::string> attributes {};
+		std::string attributes { "" };
 		std::string qualType { "" };
 
 		SourceLocation nodeLoc = d->getLocation();
+		clang::SourceManager *SM = Ctx.getSourceManager();
+		LangOptions langopts = Ctx.getLangOpts();
 		if (!nodeLoc.isValid()) {
 			return true; // Still want to visit child nodes
 		} else {
 			kind = d->getDeclKindName();
 			
-			clang::SourceManager *SM = Ctx.getSourceManager();
 			clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
 			line = ploc.getLine();
 			col = ploc.getCol();
+
+			CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
+			attributes = code.str();
 
 			if (NamedDecl *ND = llvm::dyn_cast<NamedDecl>(d)) {
 				tokName = ND->getNameAsString();
@@ -50,27 +57,43 @@ public:
 	}
 
 	bool VisitStmt(Stmt *s) {
-		/* TODO: grab usefu, statement info
-			
-			populate the attribute list with the bitfield classes 
-			copy overlapping code from Decl, NOTE THAT: you have to change the getLocation to getBeginLoc
 
-			`
-		
-		*/
+		std::string kind;
+		unsigned line;
+		unsigned col;
+		std::string tokName { "" };
+		std::string attributes { "" };
+		std::string qualType { "" };
 
-		
-		if (Expr *ex = llvm::dyn_cast<Expr>(s)) {
-			/* TODO:
+		clang::SourceManager *SM = Ctx.getSourceManager();
+		SourceLocation nodeLoc = s->getBeginLoc();
+		LangOptions langopts = Ctx.getLangOpts();
 
-				Verify with joern to see the types of things they have (is it names? is it return types (probably))
-				You can get almost anything (CHECK DOXYGEN)
-			*/
+		if (!nodeLoc.isValid()) {
+			return true; 
+		} else {
+
+			if (Expr *ex = llvm::dyn_cast<Expr>(s)) {
+				SourceLocation exprLoc = ex->getExprLoc();
+				clang::PresumedLoc ploc = SM.getPresumedLoc(exprLoc);
+				line = ploc.getLine();
+				col = ploc.getCol();
+
+				qualType = ex->getType();
+				
+			} else {
+				clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
+				line = ploc.getLine();
+				col = ploc.getCol();
+			}
+
+			kind = s->getStmtClassName();
+
+			// Getting source code as a string
+			CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
+			attributes = code.str();
 		}
-	}
-
-	bool VisitExpr(Expr *x) {
-		//TODO: expression info
 	}
 
 
