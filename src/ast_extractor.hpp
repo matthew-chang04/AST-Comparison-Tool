@@ -9,9 +9,12 @@ struct Node {
 	std::string kind;
 	unsigned line;
 	unsigned col;
-	std::string tokName { "" };
-	std::vector<std::string> attributes {};
-	std::string qualType { "" };
+	std::string tokName;
+	std::string attributes;
+	std::string qualType;
+
+	Node(unsigned node_id, std::string node_kind, unsigned node_line, unsigned node_col, std::string node_tokName, std::string node_code, std::string node_qualType) : 
+		id {node_id}, kind {node_kind}, line {node_line}, col {node_col}, tokName {node_tokName}, code {node_code}, qualType {node_qualType} {}
 };
 
 struct Edge { //contains from and to id
@@ -27,8 +30,8 @@ class Graph {
 
 public:
 	
-	int addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName = "", std::vector attributes = {}, std::string qualType = "") { 
-		nodes.push_back({node_id, kind, line, col, tokName, attributes, qualType});
+	int addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName, std::vector attributes, std::string qualType) { 
+		nodes.push_back(node_id, kind, line, col, tokName, attributes, qualType);
 		return node_id++;
 	}
 
