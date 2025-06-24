@@ -11,32 +11,30 @@
 class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
 private:
 	ASTContext *Ctx;
-	Graph out_graph;
+	Graph outGraph;
 
 
 public:
 
 	explicit parseASTVisitor(clang::ASTContext *Ctx) : clang::Context(Ctx) {}
 
-
 	bool VisitDecl(Decl *d) {
-		/* TODO: 
-			
-			implement a special case for NamedDecl nodes
-			dump location
-			
+		
+		/* TODO: Redo this to allow for handling differtn Decls AND Stmts)
+				Need to do this because the body/sub-nodes are dependent on the current node type
 		*/
 		//declare init variables
 		std::string kind;
 		unsigned line;
 		unsigned col;
 		std::string tokName { "" };
-		std::string attributes { "" };
+		std::string sourceCode { "" };
 		std::string qualType { "" };
 
 		SourceLocation nodeLoc = d->getLocation();
 		clang::SourceManager *SM = Ctx.getSourceManager();
 		LangOptions langopts = Ctx.getLangOpts();
+
 		if (!nodeLoc.isValid()) {
 			return true; // Still want to visit child nodes
 		} else {
@@ -48,11 +46,14 @@ public:
 
 			CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
 			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
-			attributes = code.str();
+			sourceCode = code.str();
 
 			if (NamedDecl *ND = llvm::dyn_cast<NamedDecl>(d)) {
 				tokName = ND->getNameAsString();
 			}
+
+			unsigned lastId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
+			if (
 		}
 	}
 
@@ -62,7 +63,7 @@ public:
 		unsigned line;
 		unsigned col;
 		std::string tokName { "" };
-		std::string attributes { "" };
+		std::string sourceCode { "" };
 		std::string qualType { "" };
 
 		clang::SourceManager *SM = Ctx.getSourceManager();
@@ -92,7 +93,9 @@ public:
 			// Getting source code as a string
 			CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
 			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
-			attributes = code.str();
+			sourceCode = code.str();
+
+			outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
 		}
 	}
 

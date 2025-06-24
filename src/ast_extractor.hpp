@@ -5,7 +5,7 @@
 
 
 struct Node {
-	uint32_t id;
+	unsigned id;
 	std::string kind;
 	unsigned line;
 	unsigned col;
@@ -18,8 +18,8 @@ struct Node {
 };
 
 struct Edge { //contains from and to id
-	int from;
-	int to;
+	unsigned from;
+	unsigned to;
 }
 
 
@@ -31,7 +31,7 @@ class Graph {
 public:
 	
 	int addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName, std::vector attributes, std::string qualType) { 
-		nodes.push_back(node_id, kind, line, col, tokName, attributes, qualType);
+		nodes.push_back({node_id, kind, line, col, tokName, attributes, qualType});
 		return node_id++;
 	}
 
