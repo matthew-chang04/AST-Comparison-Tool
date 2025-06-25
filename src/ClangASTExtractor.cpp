@@ -35,9 +35,7 @@ public:
 		clang::SourceManager *SM = Ctx.getSourceManager();
 		LangOptions langopts = Ctx.getLangOpts();
 
-		if (!nodeLoc.isValid()) {
-			return true; // Still want to visit child nodes
-		} else {
+		if (nodeLoc.isValid()) {
 			kind = d->getDeclKindName();
 			
 			clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
@@ -52,9 +50,11 @@ public:
 				tokName = ND->getNameAsString();
 			}
 
-			unsigned lastId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
-			if (
+			unsigned id = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
+				
 		}
+
+		return RecursiveASTVisitor::TraverseDecl(d);
 	}
 
 	bool VisitStmt(Stmt *s) {
