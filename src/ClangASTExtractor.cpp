@@ -8,21 +8,49 @@
 #include <clang/Tooling/Tooling.h>
 #include <clang/AST/ASTConsumer.h>
 
+
 class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
 private:
 	ASTContext *Ctx;
 	Graph outGraph;
-
+	std::vector<unsigned> parentStack;
 
 public:
 
-	explicit parseASTVisitor(clang::ASTContext *Ctx) : clang::Context(Ctx) {}
+	explicit parseASTVisitor(clang::ASTContext *Ctx) : Ctx {Ctx}, outGraph {}, parentStack {} {}
+	
+	// TODO: Finish TraverseStmt, AND make sure to implement the PARENT STACK FUNCTIONALITIES:
+		/*
+			tracks the curretn parent, pop, push, get current, and use this stack to track parent-child relations
 
-	bool VisitDecl(Decl *d) {
-		
-		/* TODO: Redo this to allow for handling differtn Decls AND Stmts)
-				Need to do this because the body/sub-nodes are dependent on the current node type
 		*/
+
+
+
+	bool TraverseDecl(clang::Decl *d) {
+		if (!d) return true;
+
+		parentStack.push_back(outGraph.getLastNodeID);
+		bool res = RecursiveASTVisitor::TraverseDecl(d);
+		parentStack.pop_back();
+		return res;
+	}
+
+	bool TraverseStmt(clang::Stmt *s) {
+		if (!s) return true;
+
+		parentStack.push_back(outGraph.getLastNodeID());
+		bool res = RecursiveASTVisitor::TraverseStmt(s);
+		parentStack.pop_back();
+		return res;
+	}
+
+	bool VisitDecl(clang::Decl *d) {
+		if (d->getKind() == clang::Decl::TranslationUnit) {
+			outGraph.addRoot();
+			return true;
+		}
+
 		//declare init variables
 		std::string kind;
 		unsigned line;
@@ -50,11 +78,10 @@ public:
 				tokName = ND->getNameAsString();
 			}
 
-			unsigned id = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
-				
+			unsigned nodeId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
+			outGraph.addEdge(parentStack.back(), nodeId);
 		}
-
-		return RecursiveASTVisitor::TraverseDecl(d);
+		return true;
 	}
 
 	bool VisitStmt(Stmt *s) {
@@ -70,10 +97,7 @@ public:
 		SourceLocation nodeLoc = s->getBeginLoc();
 		LangOptions langopts = Ctx.getLangOpts();
 
-		if (!nodeLoc.isValid()) {
-			return true; 
-		} else {
-
+		if (nodeLoc.isValid()) {
 			if (Expr *ex = llvm::dyn_cast<Expr>(s)) {
 				SourceLocation exprLoc = ex->getExprLoc();
 				clang::PresumedLoc ploc = SM.getPresumedLoc(exprLoc);
@@ -87,7 +111,6 @@ public:
 				line = ploc.getLine();
 				col = ploc.getCol();
 			}
-
 			kind = s->getStmtClassName();
 
 			// Getting source code as a string
@@ -95,8 +118,11 @@ public:
 			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
 			sourceCode = code.str();
 
-			outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
+			unsigned nodeId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
+			outGraph.addEdge(parentStack.back(), nodeId);
 		}
+
+		return true;
 	}
 
 
