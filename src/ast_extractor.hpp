@@ -43,9 +43,10 @@ public:
 		if (nodes.size() != 0) {
 			return -1;
 		}
-		nodes.push_back("TranslationUnitDecl");
+		nodes.push_back({"TranslationUnitDecl"});
 		return node_id++;
 	}
+
 	unsigned addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName, std::vector attributes, std::string qualType) { 
 		nodes.push_back({node_id, kind, line, col, tokName, attributes, qualType});
 		return node_id++;
