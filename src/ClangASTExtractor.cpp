@@ -17,20 +17,13 @@ private:
 
 public:
 
-	explicit parseASTVisitor(clang::ASTContext *Ctx) : Ctx {Ctx}, outGraph {}, parentStack {} {}
+	explicit parseASTVisitor(clang::ASTContext *Context) : Ctx {Context}, outGraph {}, parentStack {} {}
+	// TODO: Compile and Look through code for any issues, verify strucutre, etc.
 	
-	// TODO: Finish TraverseStmt, AND make sure to implement the PARENT STACK FUNCTIONALITIES:
-		/*
-			tracks the curretn parent, pop, push, get current, and use this stack to track parent-child relations
-
-		*/
-
-
-
 	bool TraverseDecl(clang::Decl *d) {
 		if (!d) return true;
 
-		parentStack.push_back(outGraph.getLastNodeID);
+		parentStack.push_back(outGraph.getLastNodeID());
 		bool res = RecursiveASTVisitor::TraverseDecl(d);
 		parentStack.pop_back();
 		return res;
