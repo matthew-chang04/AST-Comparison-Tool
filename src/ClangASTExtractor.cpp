@@ -7,7 +7,7 @@
 #include <clang/Frontend/CompilerInstance.h>
 #include <clang/Tooling/Tooling.h>
 #include <clang/AST/ASTConsumer.h>
-
+#include "ast_extractor.hpp"
 
 class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
 private:
@@ -27,7 +27,7 @@ public:
 		bool res = RecursiveASTVisitor::TraverseDecl(d);
 		parentStack.pop_back();
 		return res;
-	}
+	
 
 	bool TraverseStmt(clang::Stmt *s) {
 		if (!s) return true;

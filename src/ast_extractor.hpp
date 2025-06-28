@@ -57,13 +57,34 @@ public:
 	}
 
 	void exportJson(std::string &filename) {
-		std::ofstream out(filename);
+		std::ofstream out(filename, std::ofstream::out);
 
-		out << "{\n \"nodes:\" \n";
+		out << "{\n \"nodes:\" { \n";
 
 		for (int i = 0; i < nodes.size(); i++) {
-
+			out << "{ \"id\": " << nodes[i].id << ",\n";
+			out << " \"kind\": " << "\"" << nodes[i].kind << "\"" << ",\n";
+			out << " \"location\" : { \n";
+			out << "\t \"line\" : " << nodes[i].line << ",\n";
+			out << "\t \"col\" : " << nodes[i].col << "\n";
+			out << "},\n";
+			out << "\"code\" : " << "\"" << nodes[i].code << "\",\n";
+			out << "\"additional\" : " << "{ \n";
+			out << "\t\"qualType\" : \"" << nodes[i].qualType << "\",\n";
+			out << "\t\"tokName\" : \"" << nodes[i].tokName << "\"\n";
+			out << "}\n";
+			out << "}\n"; 
 		}
+
+		out << "}" << std::endl;
+		
+		out << "\"edges\" : {\n";
+		
+		for (int i = 0; i < edges.size(); i++) {
+			out << "\"" << edges[i].from "->" << edges[i].to << "\"\n";
+		}
+
+		out << "}" << std::endl;
 		
 	}
 
