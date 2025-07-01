@@ -16,7 +16,7 @@ struct Node {
 	Node(unsigned node_id, std::string node_kind, unsigned node_line, unsigned node_col, std::string node_tokName, std::string node_code, std::string node_qualType) : 
 		id {node_id}, kind {node_kind}, line {node_line}, col {node_col}, tokName {node_tokName}, code {node_code}, qualType {node_qualType} {}
 
-	Node(std::string& node_kind) :
+	Node(const std::string& node_kind) :
 		id {0}, kind {node_kind}, line {}, col {}, tokName {}, code {}, qualType {} {}
 
 		
@@ -25,7 +25,7 @@ struct Node {
 struct Edge { //contains from and to id
 	unsigned from;
 	unsigned to;
-}
+};
 
 
 class Graph {
@@ -35,7 +35,7 @@ class Graph {
 
 public:
 	
-	unsigned getLastNodeID() {
+	unsigned getLastNodeID() const {
 		return nodes.back().id;
 	}
 	
@@ -43,16 +43,16 @@ public:
 		if (nodes.size() != 0) {
 			return -1;
 		}
-		nodes.push_back({"TranslationUnitDecl"});
+		nodes.push_back({"Translation_Unit_Decl"});
 		return node_id++;
 	}
 
-	unsigned addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName, std::vector attributes, std::string qualType) { 
-		nodes.push_back({node_id, kind, line, col, tokName, attributes, qualType});
+	unsigned addNode(const std::string& kind, unsigned line, unsigned col, const std::string& tokName, std::string code, std::string qualType) { 
+		nodes.push_back({node_id, kind, line, col, tokName, code, qualType});
 		return node_id++;
 	}
 
-	void addEdge(int from, int to) {
+	void addEdge(unsigned from, unsigned to) {
 		edges.push_back({from, to});
 	}
 
@@ -81,11 +81,11 @@ public:
 		out << "\"edges\" : {\n";
 		
 		for (int i = 0; i < edges.size(); i++) {
-			out << "\"" << edges[i].from "->" << edges[i].to << "\"\n";
+			out << "\"" << edges[i].from << "->" << edges[i].to << "\"\n";
 		}
 
 		out << "}" << std::endl;
 		
 	}
 
-}
+};
