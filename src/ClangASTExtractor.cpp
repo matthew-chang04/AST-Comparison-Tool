@@ -12,13 +12,14 @@
 class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
 private:
 	ASTContext *Ctx;
+	const SourceManager& SM;
+	const LangOptions& LangOpts;
 	Graph outGraph;
 	std::vector<unsigned> parentStack;
 
 public:
 
-	explicit parseASTVisitor(clang::ASTContext *Context) : Ctx {Context}, outGraph {}, parentStack {} {}
-	// TODO: Compile and Look through code for any issues, verify strucutre, etc.
+	explicit parseASTVisitor(clang::ASTContext *Context) : Ctx {Context}, SM {Context->getSourceManager()} LangOpts {Context->getLangOpts()}, outGraph {}, parentStack {} {}
 	
 	bool TraverseDecl(clang::Decl *d) {
 		if (!d) return true;
@@ -27,6 +28,7 @@ public:
 		bool res = RecursiveASTVisitor::TraverseDecl(d);
 		parentStack.pop_back();
 		return res;
+	}
 	
 
 	bool TraverseStmt(clang::Stmt *s) {
@@ -53,18 +55,17 @@ public:
 		std::string qualType { "" };
 
 		SourceLocation nodeLoc = d->getLocation();
-		clang::SourceManager *SM = Ctx.getSourceManager();
-		LangOptions langopts = Ctx.getLangOpts();
 
 		if (nodeLoc.isValid()) {
 			kind = d->getDeclKindName();
 			
 			clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
 			line = ploc.getLine();
-			col = ploc.getCol();
+			col = ploc.getColumn();
 
-			CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
-			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
+			// Get source code as a string
+			clang::CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, &SM, LangOpts, 0);
 			sourceCode = code.str();
 
 			if (NamedDecl *ND = llvm::dyn_cast<NamedDecl>(d)) {
@@ -86,16 +87,14 @@ public:
 		std::string sourceCode { "" };
 		std::string qualType { "" };
 
-		clang::SourceManager *SM = Ctx.getSourceManager();
 		SourceLocation nodeLoc = s->getBeginLoc();
-		LangOptions langopts = Ctx.getLangOpts();
 
 		if (nodeLoc.isValid()) {
 			if (Expr *ex = llvm::dyn_cast<Expr>(s)) {
 				SourceLocation exprLoc = ex->getExprLoc();
 				clang::PresumedLoc ploc = SM.getPresumedLoc(exprLoc);
 				line = ploc.getLine();
-				col = ploc.getCol();
+				col = ploc.getColumn();
 
 				qualType = ex->getType();
 				
@@ -107,13 +106,13 @@ public:
 			kind = s->getStmtClassName();
 
 			// Getting source code as a string
-			CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
-			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, langopts, 0);
+			clang::CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, &SM, LangOpts, 0);
 			sourceCode = code.str();
 
 			unsigned nodeId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
 			outGraph.addEdge(parentStack.back(), nodeId);
-		}
+		
 
 		return true;
 	}
