@@ -101,6 +101,7 @@ tool: /usr/local/lib/libclangASTMatchers.a
 tool: /usr/local/lib/libclangFrontend.a
 tool: /usr/local/lib/libclangAST.a
 tool: /usr/local/lib/libclangSerialization.a
+tool: /usr/local/lib/libclangLex.a
 tool: /usr/local/lib/libclangParse.a
 tool: /usr/local/lib/libclangSema.a
 tool: /usr/local/lib/libclangAPINotes.a

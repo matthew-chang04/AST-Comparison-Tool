@@ -1,11 +1,13 @@
 #include <clang/Lex/Lexer.h>
-#include <clang/AST/*>
-#include <clang/Frontend>
+#include <clang/AST/AST.h>
+#include <clang/AST/ASTContext.h>
+#include <clang/AST/RecursiveASTVisitor.h>
+#include <clang/AST/ASTConsumer.h>
+#include <clang/Frontend/FrontendAction.h>
 #include <clang/Tooling/Tooling.h>
 #include "ast_extractor.hpp"
 
 using namespace clang;
-
 
 class parseASTVisitor : public RecursiveASTVisitor<parseASTVisitor> {
 private:
