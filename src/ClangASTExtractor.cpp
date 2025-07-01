@@ -1,15 +1,13 @@
-#include <memory>
-
 #include <clang/Lex/Lexer.h>
-#include <clang/AST/AST.h>
-#include <clang/AST/RecursiveASTVisitor.h>
-#include <clang/Frontend/FrontendAction.h>
-#include <clang/Frontend/CompilerInstance.h>
+#include <clang/AST/*>
+#include <clang/Frontend>
 #include <clang/Tooling/Tooling.h>
-#include <clang/AST/ASTConsumer.h>
 #include "ast_extractor.hpp"
 
-class parseASTVisitor : public clang::RecursiveASTVisitor<parseASTVisitor> {
+using namespace clang;
+
+
+class parseASTVisitor : public RecursiveASTVisitor<parseASTVisitor> {
 private:
 	ASTContext *Ctx;
 	const SourceManager& SM;
@@ -19,7 +17,7 @@ private:
 
 public:
 
-	explicit parseASTVisitor(clang::ASTContext *Context) : Ctx {Context}, SM {Context->getSourceManager()} LangOpts {Context->getLangOpts()}, outGraph {}, parentStack {} {}
+	explicit parseASTVisitor(ASTContext *Context) : Ctx {Context}, SM {Context->getSourceManager()}, LangOpts {Context->getLangOpts()}, outGraph {}, parentStack {} {}
 	
 	bool TraverseDecl(clang::Decl *d) {
 		if (!d) return true;
@@ -59,13 +57,13 @@ public:
 		if (nodeLoc.isValid()) {
 			kind = d->getDeclKindName();
 			
-			clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
+			PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
 			line = ploc.getLine();
 			col = ploc.getColumn();
 
 			// Get source code as a string
-			clang::CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
-			llvm::StringRef code = Lexer::getSourceText(sourceRange, &SM, LangOpts, 0);
+			CharSourceRange sourceRange = CharSourceRange::getTokenRange(d->getBeginLoc(), d->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, LangOpts, 0);
 			sourceCode = code.str();
 
 			if (NamedDecl *ND = llvm::dyn_cast<NamedDecl>(d)) {
@@ -92,41 +90,41 @@ public:
 		if (nodeLoc.isValid()) {
 			if (Expr *ex = llvm::dyn_cast<Expr>(s)) {
 				SourceLocation exprLoc = ex->getExprLoc();
-				clang::PresumedLoc ploc = SM.getPresumedLoc(exprLoc);
+				PresumedLoc ploc = SM.getPresumedLoc(exprLoc);
 				line = ploc.getLine();
 				col = ploc.getColumn();
 
-				qualType = ex->getType();
+				QualType qual = ex->getType();
+				qualType = qual.getAsString();
 				
 			} else {
-				clang::PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
+				PresumedLoc ploc = SM.getPresumedLoc(nodeLoc);
 				line = ploc.getLine();
-				col = ploc.getCol();
+				col = ploc.getColumn();
 			}
 			kind = s->getStmtClassName();
 
 			// Getting source code as a string
-			clang::CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
-			llvm::StringRef code = Lexer::getSourceText(sourceRange, &SM, LangOpts, 0);
+			CharSourceRange sourceRange = CharSourceRange::getTokenRange(s->getBeginLoc(), s->getEndLoc());
+			llvm::StringRef code = Lexer::getSourceText(sourceRange, SM, LangOpts, 0);
 			sourceCode = code.str();
 
 			unsigned nodeId = outGraph.addNode(kind, line, col, tokName, sourceCode, qualType);
 			outGraph.addEdge(parentStack.back(), nodeId);
-		
-
+		}
 		return true;
 	}
+};
 
-
-class parseASTConsumer : public clang::ASTConsumer {
+class parseASTConsumer : public ASTConsumer {
 public:
 	
 	virtual void HandleTranslationUnit(ASTContext &Ctx) {}	
-}
+};
 
-class parseASTAction : public clang::ASTFrontendAction {
+class parseASTAction : public ASTFrontendAction {
 public:
-	virtual std::unique_ptr<clang::ASTConsumer> CreateASTConsumer(clang::CompilerInstance &CI, llvm::StringRef file) {
+	virtual std::unique_ptr<ASTConsumer> CreateASTConsumer(CompilerInstance &CI, llvm::StringRef file) {
 		return std::make_unique<parseASTConsumer>();
 	}
 };
