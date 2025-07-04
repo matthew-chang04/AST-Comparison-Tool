@@ -5,7 +5,14 @@
 #include <clang/AST/ASTConsumer.h>
 #include <clang/Frontend/FrontendAction.h>
 #include <clang/Tooling/Tooling.h>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include "ast_extractor.hpp"
+
+// Allows for Command Line Option Implementations
+static llvm::cl::OptionCategory Options("ast-parser options");
+
 
 using namespace clang;
 
@@ -21,7 +28,7 @@ public:
 
 	explicit parseASTVisitor(ASTContext *Context) : Ctx {Context}, SM {Context->getSourceManager()}, LangOpts {Context->getLangOpts()}, outGraph {}, parentStack {} {}
 	
-	bool TraverseDecl(clang::Decl *d) {
+	bool TraverseDecl(Decl *d) {
 		if (!d) return true;
 
 		parentStack.push_back(outGraph.getLastNodeID());
@@ -31,7 +38,7 @@ public:
 	}
 	
 
-	bool TraverseStmt(clang::Stmt *s) {
+	bool TraverseStmt(Stmt *s) {
 		if (!s) return true;
 
 		parentStack.push_back(outGraph.getLastNodeID());
@@ -40,8 +47,8 @@ public:
 		return res;
 	}
 
-	bool VisitDecl(clang::Decl *d) {
-		if (d->getKind() == clang::Decl::TranslationUnit) {
+	bool VisitDecl(Decl *d) {
+		if (d->getKind() == Decl::TranslationUnit) {
 			outGraph.addRoot();
 			return true;
 		}
@@ -116,19 +123,64 @@ public:
 		}
 		return true;
 	}
+
+// TODO: IMPLEMENT THE FUNCTION!!! AND study up on ofstream and fstreams in general
+
 };
 
 class parseASTConsumer : public ASTConsumer {
 public:
 	
-	virtual void HandleTranslationUnit(ASTContext &Ctx) {}	
+	explicit parseASTConsumer(ASTContext *Context) : Visitor{Context} {}
+
+	virtual void HandleTranslationUnit(ASTContext &Ctx) {
+		Visitor.TraverseDecl(Ctx.getTranslationUnitDecl());
+
+		// TODO: IMPLEMENT a function that outputs the graph to some output file before terminating the translation unit.
+		Visitor.
+	}
+
+private:
+	parseASTVisitor Visitor;
 };
 
 class parseASTAction : public ASTFrontendAction {
 public:
 	virtual std::unique_ptr<ASTConsumer> CreateASTConsumer(CompilerInstance &CI, llvm::StringRef file) {
-		return std::make_unique<parseASTConsumer>();
+		return std::make_unique<parseASTConsumer>(&CI.getASTContext());
 	}
 };
 
+/* TODO: Implement this version of main for quick testing (inputting code to the command line)
+int main(int argc, char *argv[]) {
+	if (argc != 2 ) {
+		std::cout << "ERROR: Usage: ./test <sourcefile>";
+		return -1;
+	}
 
+	std::ifstream sourceFile(argv[1]);
+	if (!sourceFile.is_open()) {
+		std::cout << "ERROR: Source File Invalid";
+		return -1;	
+	}
+	
+	std::stringstream buffer;
+	buffer << sourceFile.rdbuf();
+	std::string sourceCode = buffer.str();
+
+	sourceFile.close();	
+}
+*/
+
+int main(int argc, char *argv[]) {
+	
+	if (argc != 2) {
+		std::cout << "ERROR: Usage: ./generate <sourceFile>";
+		return -1;
+	}
+
+	tooling::CommonOptionsParser OptionsParser(argc, argv, Options);
+	tooling::ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
+		
+	return Tool.run(tooling::newFrontendActionFactory<parseASTAction>().get());
+}
