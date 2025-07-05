@@ -5,9 +5,13 @@
 #include <clang/AST/ASTConsumer.h>
 #include <clang/Frontend/FrontendAction.h>
 #include <clang/Tooling/Tooling.h>
+#include <clang/Tooling/CommonOptionsParser.h>
+#include <clang/Basic/FileEntry.h>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <memory>
 #include "ast_extractor.hpp"
 
 // Allows for Command Line Option Implementations
@@ -124,8 +128,25 @@ public:
 		return true;
 	}
 
-// TODO: IMPLEMENT THE FUNCTION!!! AND study up on ofstream and fstreams in general
+	void AstToJson() {
+		auto fileRef = SM.getFileEntryRefForID(SM.getMainFileID());
 
+		std::string outFilePrefix;
+		if (fileRef) {
+			FileEntryRef& fileEntry = *fileRef;
+
+			llvm::StringRef fileName = fileEntry.getName();
+			llvm::StringRef fileNameWithoutPath = llvm::sys::path::filename(fileName);
+			llvm::StringRef fileWithoutExt = llvm::sys::path::stem(fileNameWithoutPath);
+
+			outFilePrefix = fileWithoutExt.str();
+		} else {
+			outFilePrefix = "";
+		}
+
+		std::string filename = outFilePrefix + "_astOut.json";
+		outGraph.exportJson(filename);
+	}
 };
 
 class parseASTConsumer : public ASTConsumer {
@@ -135,9 +156,7 @@ public:
 
 	virtual void HandleTranslationUnit(ASTContext &Ctx) {
 		Visitor.TraverseDecl(Ctx.getTranslationUnitDecl());
-
-		// TODO: IMPLEMENT a function that outputs the graph to some output file before terminating the translation unit.
-		Visitor.
+		Visitor.AstToJson();
 	}
 
 private:
@@ -172,15 +191,15 @@ int main(int argc, char *argv[]) {
 }
 */
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char *argv[]) {
 	
 	if (argc != 2) {
 		std::cout << "ERROR: Usage: ./generate <sourceFile>";
 		return -1;
 	}
 
-	tooling::CommonOptionsParser OptionsParser(argc, argv, Options);
-	tooling::ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
+	auto OptionsParser = tooling::CommonOptionsParser::create(argc, argv, Options);
+	tooling::ClangTool Tool(OptionsParser->getCompilations(), OptionsParser->getSourcePathList());
 		
 	return Tool.run(tooling::newFrontendActionFactory<parseASTAction>().get());
 }
