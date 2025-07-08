@@ -14,10 +14,6 @@
 #include <memory>
 #include "ast_extractor.hpp"
 
-// Allows for Command Line Option Implementations
-static llvm::cl::OptionCategory Options("ast-parser options");
-
-
 using namespace clang;
 
 class parseASTVisitor : public RecursiveASTVisitor<parseASTVisitor> {
@@ -197,9 +193,22 @@ int main(int argc, const char *argv[]) {
 		std::cout << "ERROR: Usage: ./generate <sourceFile>";
 		return -1;
 	}
+	
+	std::vector<std::string> sourceFiles = {argv[1]};
 
-	auto OptionsParser = tooling::CommonOptionsParser::create(argc, argv, Options);
-	tooling::ClangTool Tool(OptionsParser->getCompilations(), OptionsParser->getSourcePathList());
-		
+	std::string SDKPath = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk";
+	std::vector<std::string> flags {
+		"-std=c++17", 
+		"-resource-dir", "/usr/local/lib/clang/21", 
+		"-isysroot", SDKPath, 
+		"-isystem", SDKPath + "/usr/include/c++/v1", 
+		"-isystem", SDKPath + "/usr/include/"
+		};
+
+	clang::tooling::FixedCompilationDatabase Compilations("../testfiles", flags);
+	//auto OptionsParser = tooling::CommonOptionsParser::create(argc, argv, Options);
+	//tooling::ClangTool Tool(OptionsParser->getCompilations(), OptionsParser->getSourcePathList());
+	
+	tooling::ClangTool Tool(Compilations, sourceFiles);
 	return Tool.run(tooling::newFrontendActionFactory<parseASTAction>().get());
 }
