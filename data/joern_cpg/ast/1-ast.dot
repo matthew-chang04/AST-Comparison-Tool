@@ -1,0 +1,128 @@
+digraph "goodG2B" {  
+node [shape="rect"];  
+"111669149697" [label = <METHOD, 57<BR/>goodG2B> ]
+"25769803781" [label = <BLOCK, 58<BR/>{ char * data; char * &amp;dataRef = data; ...> ]
+"94489280518" [label = <LOCAL, 59<BR/>char * data: char*> ]
+"94489280519" [label = <LOCAL, 60<BR/>char * &amp;dataRef: char*&amp;> ]
+"30064771095" [label = <&lt;operator&gt;.assignment, 60<BR/>* &amp;dataRef = data> ]
+"68719476752" [label = <IDENTIFIER, 60<BR/>dataRef<BR/>* &amp;dataRef = data> ]
+"68719476753" [label = <IDENTIFIER, 60<BR/>data<BR/>* &amp;dataRef = data> ]
+"94489280520" [label = <LOCAL, 61<BR/>char * dataBadBuffer: char*> ]
+"30064771096" [label = <&lt;operator&gt;.assignment, 61<BR/>* dataBadBuffer = (char *)ALLOCA((10)*sizeof(ch...> ]
+"68719476754" [label = <IDENTIFIER, 61<BR/>dataBadBuffer<BR/>* dataBadBuffer = (char *)ALLOCA((10)*sizeof(ch...> ]
+"30064771097" [label = <&lt;operator&gt;.cast, 61<BR/>(char *)ALLOCA((10)*sizeof(char))> ]
+"184683593730" [label = <UNKNOWN, 61<BR/>char *> ]
+"30064771098" [label = <ALLOCA, 61<BR/>ALLOCA((10)*sizeof(char))> ]
+"30064771099" [label = <&lt;operator&gt;.multiplication, 61<BR/>(10)*sizeof(char)> ]
+"90194313224" [label = <LITERAL, 61<BR/>10<BR/>(10)*sizeof(char)> ]
+"30064771100" [label = <&lt;operator&gt;.sizeOf, 61<BR/>sizeof(char)> ]
+"68719476755" [label = <IDENTIFIER, 61<BR/>char<BR/>sizeof(char)> ]
+"94489280521" [label = <LOCAL, 62<BR/>char * dataGoodBuffer: char*> ]
+"30064771101" [label = <&lt;operator&gt;.assignment, 62<BR/>* dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof...> ]
+"68719476756" [label = <IDENTIFIER, 62<BR/>dataGoodBuffer<BR/>* dataGoodBuffer = (char *)ALLOCA((10+1)*sizeof...> ]
+"30064771102" [label = <&lt;operator&gt;.cast, 62<BR/>(char *)ALLOCA((10+1)*sizeof(char))> ]
+"184683593731" [label = <UNKNOWN, 62<BR/>char *> ]
+"30064771103" [label = <ALLOCA, 62<BR/>ALLOCA((10+1)*sizeof(char))> ]
+"30064771104" [label = <&lt;operator&gt;.multiplication, 62<BR/>(10+1)*sizeof(char)> ]
+"30064771105" [label = <&lt;operator&gt;.addition, 62<BR/>10+1> ]
+"90194313225" [label = <LITERAL, 62<BR/>10<BR/>10+1> ]
+"90194313226" [label = <LITERAL, 62<BR/>1<BR/>10+1> ]
+"30064771106" [label = <&lt;operator&gt;.sizeOf, 62<BR/>sizeof(char)> ]
+"68719476757" [label = <IDENTIFIER, 62<BR/>char<BR/>sizeof(char)> ]
+"30064771107" [label = <&lt;operator&gt;.assignment, 65<BR/>data = dataGoodBuffer> ]
+"68719476758" [label = <IDENTIFIER, 65<BR/>data<BR/>data = dataGoodBuffer> ]
+"68719476759" [label = <IDENTIFIER, 65<BR/>dataGoodBuffer<BR/>data = dataGoodBuffer> ]
+"30064771108" [label = <&lt;operator&gt;.assignment, 66<BR/>data[0] = '\0'> ]
+"30064771109" [label = <&lt;operator&gt;.indirectIndexAccess, 66<BR/>data[0]> ]
+"68719476760" [label = <IDENTIFIER, 66<BR/>data<BR/>data[0] = '\0'> ]
+"90194313227" [label = <LITERAL, 66<BR/>0<BR/>data[0] = '\0'> ]
+"90194313228" [label = <LITERAL, 66<BR/>'\0'<BR/>data[0] = '\0'> ]
+"25769803782" [label = <BLOCK, 67<BR/>{ char * data = dataRef; { ...> ]
+"94489280522" [label = <LOCAL, 68<BR/>char * data: char*> ]
+"30064771110" [label = <&lt;operator&gt;.assignment, 68<BR/>* data = dataRef> ]
+"68719476761" [label = <IDENTIFIER, 68<BR/>data<BR/>* data = dataRef> ]
+"68719476762" [label = <IDENTIFIER, 68<BR/>dataRef<BR/>* data = dataRef> ]
+"25769803783" [label = <BLOCK, 69<BR/>{ char source[10+1] = SRC_STRING; ...> ]
+"94489280523" [label = <LOCAL, 70<BR/>char source[10+1]: char[10+1]> ]
+"30064771111" [label = <&lt;operator&gt;.assignment, 70<BR/>source[10+1] = SRC_STRING> ]
+"68719476763" [label = <IDENTIFIER, 70<BR/>source<BR/>source[10+1] = SRC_STRING> ]
+"30064771112" [label = <&lt;operator&gt;.alloc, 70<BR/>source[10+1] = SRC_STRING> ]
+"30064771113" [label = <&lt;operator&gt;.addition, 70<BR/>10+1> ]
+"90194313229" [label = <LITERAL, 70<BR/>10<BR/>10+1> ]
+"90194313230" [label = <LITERAL, 70<BR/>1<BR/>10+1> ]
+"30064771114" [label = <&lt;operator&gt;.assignment, 70<BR/>source[10+1] = SRC_STRING> ]
+"68719476764" [label = <IDENTIFIER, 70<BR/>source<BR/>source[10+1] = SRC_STRING> ]
+"30064771115" [label = <SRC_STRING, 70<BR/>SRC_STRING> ]
+"25769803784" [label = <BLOCK, 70<BR/>&lt;empty&gt;> ]
+"90194313231" [label = <LITERAL, 70<BR/>&quot;AAAAAAAAAA&quot;<BR/>&lt;empty&gt;> ]
+"30064771116" [label = <strcpy, 72<BR/>strcpy(data, source)> ]
+"68719476765" [label = <IDENTIFIER, 72<BR/>data<BR/>strcpy(data, source)> ]
+"68719476766" [label = <IDENTIFIER, 72<BR/>source<BR/>strcpy(data, source)> ]
+"30064771117" [label = <printLine, 73<BR/>printLine(data)> ]
+"68719476767" [label = <IDENTIFIER, 73<BR/>data<BR/>printLine(data)> ]
+"94489280524" [label = <LOCAL, 61<BR/>char: char> ]
+"133143986176" [label = <MODIFIER, 57<BR/>STATIC> ]
+"128849018881" [label = <METHOD_RETURN, 57<BR/>void> ]
+  "111669149697" -> "25769803781" 
+  "111669149697" -> "133143986176" 
+  "111669149697" -> "128849018881" 
+  "25769803781" -> "94489280524" 
+  "25769803781" -> "94489280518" 
+  "25769803781" -> "94489280519" 
+  "25769803781" -> "30064771095" 
+  "25769803781" -> "94489280520" 
+  "25769803781" -> "30064771096" 
+  "25769803781" -> "94489280521" 
+  "25769803781" -> "30064771101" 
+  "25769803781" -> "30064771107" 
+  "25769803781" -> "30064771108" 
+  "25769803781" -> "25769803782" 
+  "30064771095" -> "68719476752" 
+  "30064771095" -> "68719476753" 
+  "30064771096" -> "68719476754" 
+  "30064771096" -> "30064771097" 
+  "30064771097" -> "184683593730" 
+  "30064771097" -> "30064771098" 
+  "30064771098" -> "30064771099" 
+  "30064771099" -> "90194313224" 
+  "30064771099" -> "30064771100" 
+  "30064771100" -> "68719476755" 
+  "30064771101" -> "68719476756" 
+  "30064771101" -> "30064771102" 
+  "30064771102" -> "184683593731" 
+  "30064771102" -> "30064771103" 
+  "30064771103" -> "30064771104" 
+  "30064771104" -> "30064771105" 
+  "30064771104" -> "30064771106" 
+  "30064771105" -> "90194313225" 
+  "30064771105" -> "90194313226" 
+  "30064771106" -> "68719476757" 
+  "30064771107" -> "68719476758" 
+  "30064771107" -> "68719476759" 
+  "30064771108" -> "30064771109" 
+  "30064771108" -> "90194313228" 
+  "30064771109" -> "68719476760" 
+  "30064771109" -> "90194313227" 
+  "25769803782" -> "94489280522" 
+  "25769803782" -> "30064771110" 
+  "25769803782" -> "25769803783" 
+  "30064771110" -> "68719476761" 
+  "30064771110" -> "68719476762" 
+  "25769803783" -> "94489280523" 
+  "25769803783" -> "30064771111" 
+  "25769803783" -> "30064771114" 
+  "25769803783" -> "30064771116" 
+  "25769803783" -> "30064771117" 
+  "30064771111" -> "68719476763" 
+  "30064771111" -> "30064771112" 
+  "30064771112" -> "30064771113" 
+  "30064771113" -> "90194313229" 
+  "30064771113" -> "90194313230" 
+  "30064771114" -> "68719476764" 
+  "30064771114" -> "30064771115" 
+  "30064771115" -> "25769803784" 
+  "25769803784" -> "90194313231" 
+  "30064771116" -> "68719476765" 
+  "30064771116" -> "68719476766" 
+  "30064771117" -> "68719476767" 
+}
