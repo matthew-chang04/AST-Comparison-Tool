@@ -3,7 +3,6 @@
 #include <map>
 #include <fstream>
 
-
 struct Node {
 	unsigned id;
 	std::string kind;
@@ -17,28 +16,24 @@ struct Node {
 		id {node_id}, kind {node_kind}, line {node_line}, col {node_col}, tokName {node_tokName}, code {node_code}, qualType {node_qualType} {}
 
 	Node(const std::string& node_kind) :
-		id {0}, kind {node_kind}, line {}, col {}, tokName {}, code {}, qualType {} {}
-
-		
+		id {0}, kind {node_kind}, line {}, col {}, tokName {}, code {}, qualType {} {}		
 };
 
-struct Edge { //contains from and to id
+struct Edge { 
 	unsigned from;
 	unsigned to;
 };
-
 
 class Graph {
 	unsigned node_id = 0;
 	std::vector<Node> nodes;
 	std::vector<Edge> edges;
 
-public:
-	
+public:	
 	unsigned getLastNodeID() const {
 		return nodes.back().id;
 	}
-	
+
 	unsigned addRoot() {
 		if (nodes.size() != 0) {
 			return -1;
