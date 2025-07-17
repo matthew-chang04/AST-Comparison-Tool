@@ -1,10 +1,11 @@
 import networkx as nx
 import json
 import os
-filepath = input("Enter JSON file to parse:")
+
+filepath = input("Enter JSON file to parse: ")
 FILEPATH = os.path.abspath(filepath)
 
-sourcepath = input("Enter source code file:")
+sourcepath = input("Enter source code file: ")
 SOURCEPATH = os.path.abspath(sourcepath)
 
 def populateGraph(root: dict, Graph: nx.DiGraph, root_id: int):
@@ -37,7 +38,6 @@ def graphToDot(G: nx.Graph, filename: str):
 
 	f.write("}")
 	f.close()
-
 
 if __name__== "__main__":
 
