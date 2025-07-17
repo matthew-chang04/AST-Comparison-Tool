@@ -8,7 +8,7 @@ set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/llvm")
 find_package(llvm REQUIRED CONFIG)
 find_package(clang REQUIRED CONFIG)
 
-add_executable(clang_ast_parse src/ClangASTExtractor.cpp)
+add_executable(clang_ast_parse ClangParser/ClangASTExtractor.cpp)
 
 target_include_directories(clang_ast_parse PRIVATE
 	${LLVM_INCLUDE_DIRS}
