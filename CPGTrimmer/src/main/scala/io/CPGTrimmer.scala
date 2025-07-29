@@ -5,6 +5,7 @@ import java.nio.file.{Path, Paths}
 
 import better.files._
 import io.shiftleft.codepropertygraph.Cpg
+import io.shiftleft.codepropertygraph.schema.CpgSchema
 import io.shiftleft.passes.{CpgPass, DiffGraph}
 import io.shiftleft.semanticcpg.layers.{
   LayerCreator,
@@ -35,6 +36,24 @@ class CPGTrimmer(options: CPGTrimmerOpts) extends LayerCreator {
 
 	override def create(context: LayerCreatorContext) {
 		val cpg = context.cpg
-			
+		val removalPass = new EmptyRemovalPass(cpg)
+
+		val newGraphs = removalPass.run()
+		newGraphs.foreach(cpg.apply)
+	}
+}
+
+class EmptyRemovalPass(cpg: Cpg) extends CpgPass(cpg) {
+
+	override def run(): Iterator[DiffGraph] = {
+		val graphBuilder = DiffGraph.newBuilder
+
+		val emptyNodes = cpg.block.where(_.astChildren.isEmpty).l
+
+		emptyNodes.foreach{ node =>
+			graphBuilder.removeNode(node)
+		}
+
+		Iterator(graphBuilder.build())
 	}
 }
