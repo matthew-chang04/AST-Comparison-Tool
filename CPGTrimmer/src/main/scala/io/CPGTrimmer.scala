@@ -1,5 +1,4 @@
-package CPGTrimmer
-
+package io.joern.cpgtrimmer
 
 import java.nio.file.{Path, Paths}
 
@@ -48,10 +47,12 @@ class EmptyRemovalPass(cpg: Cpg) extends CpgPass(cpg) {
 	override def run(): Iterator[DiffGraph] = {
 		val graphBuilder = DiffGraph.newBuilder
 
-		val emptyNodes = cpg.block.where(_.astChildren.isEmpty).l
+		val emptyNodes = cpg.block.code("<empty>").l
 
 		emptyNodes.foreach{ node =>
+			graphBuilder.removeEdge(node.inE)
 			graphBuilder.removeNode(node)
+
 		}
 
 		Iterator(graphBuilder.build())
