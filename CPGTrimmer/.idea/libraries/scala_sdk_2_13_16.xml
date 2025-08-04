@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="scala-sdk-2.13.16" type="Scala">
+    <properties>
+      <language-level>Scala_3_5</language-level>
+      <compiler-classpath>
+        <root url="file://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.16/scala-compiler-2.13.16.jar" />
+        <root url="file://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.16/scala-reflect-2.13.16.jar" />
+        <root url="file://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.16/scala-library-2.13.16.jar" />
+      </compiler-classpath>
+      <compiler-bridge-binary-jar>file://$USER_HOME$/.ivy2/cache/org.scala-lang/scala2-sbt-bridge/jars/scala2-sbt-bridge-2.13.16.jar</compiler-bridge-binary-jar>
+    </properties>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.16/scala-reflect-2.13.16.jar!/" />
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.16/scala-library-2.13.16.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="https://www.scala-lang.org/api/2.13.16/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
