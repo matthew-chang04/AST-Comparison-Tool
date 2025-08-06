@@ -1,12 +1,10 @@
-package cpgtrimmer
-
-import java.nio.file.{Path, Paths}
 import io.shiftleft.codepropertygraph.Cpg
-import io.shiftleft.codepropertygraph._
-import io.shiftleft.passes.{CpgPass, DiffGraph}
+import io.shiftleft.passes.NewDiffGraphBuilder
+import io.shiftleft.passes.CpgPass
 import io.shiftleft.semanticcpg.language._
-import io.shiftleft.semanticcpg.layers.{LayerCreator, LayerCreatorContext, LayerCreatorOptions}
-import scala.jdk.CollectionConverters._
+import io.shiftleft.passes.layers.LayerCreator
+import io.shiftleft.passes.layers.LayerCreatorContext
+import io.shiftleft.passes.layers.LayerCreatorOptions
 
 
 object CPGTrimmer {
@@ -28,18 +26,15 @@ class CPGTrimmer(options: CPGTrimmerOpts) extends LayerCreator {
 		new EmptyRemovalPass(cpg).createApplySerializeAndStore(serializedGraph, storeUndoInfo)
 		serializedGraph.close()
 	}
-
 }
+
 class EmptyRemovalPass(cpg: Cpg) extends CpgPass(cpg) {
 
-	override def run(): Iterator[DiffGraph] = {
-		val graphBuilder: DiffGraph.Builder = DiffGraph.newBuilder
-
+	override def run(dstGraph: DiffGraphBuilder): Unit = {
 		val emptyNodes: Unit = cpg.method.ast.isBlock.code("<empty>").foreach { node =>
 			val edges = node.inE()
-			edges.forEachRemaining(edge => graphBuilder.removeEdge(edge))
-			graphBuilder.removeNode(node)
+			edges.forEachRemaining(edge => dstGraph.removeEdge(edge))
+			dstGraph.removeNode(node)
 		}
-		Iterator(graphBuilder.build())
 	}
 }

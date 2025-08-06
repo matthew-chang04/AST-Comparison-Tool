@@ -1,15 +1,20 @@
 import io.shiftleft.codepropertygraph.Cpg
-import io.shiftleft.semanticcpg.testing.MockCpg
+import io.joern.x2cpg.X2Cpg
+import io.joern.x2cpg.passes.base
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import java.nio.file.{Files, Paths}
+import io.joern.x2cpg.
 
 
-// TODO: keep working on basic test implementation (get the test.c file liked (or find an easier way))
 
 class CPGTrimmerPassTests extends AnyWordSpec with Matchers {
   
   "CPGTrimmerPass" should {
+    val cpg = code(
+      """
+        |
+        |""".stripMargin)
    "Remove all empty BLOCK Nodes" in {
 	   val dir = "resources/test.c"
 	   val 
