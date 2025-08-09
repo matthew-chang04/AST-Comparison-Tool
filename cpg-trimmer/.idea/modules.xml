@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cpg-trimmer/cpg-trimmer.iml" filepath="$PROJECT_DIR$/.idea/modules/cpg-trimmer/cpg-trimmer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cpg-trimmer/cpg-trimmer.cpg-trimmer-build.iml" filepath="$PROJECT_DIR$/.idea/modules/cpg-trimmer/cpg-trimmer.cpg-trimmer-build.iml" />
+    </modules>
+  </component>
+</project>
