@@ -10,33 +10,53 @@ import io.shiftleft.codepropertygraph.generated.PropertyNames
 
 class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
 
-  override def run(dstGraph: DiffGraphBuilder): Unit = {
+  enum TypeNames:
+    case string, signedint, unsignedint, floating
+
+  class idType() {
+    val typeName: String
+    val isNumeric: Boolean
+    val isSigned: Boolean
+    val isFloating: Boolean
+    val minBytes: Int
+  }
+
+  object idType {
 
   }
 
-  def fixAmbiguousCalls(dstGraph: DiffGraphBuilder): Unit = {
+  override def run(dstGraph: DiffGraphBuilder): Unit = {
+    // Fixes calls of type ANY/void (inaccurate types)
+    fixAmbiguousCalls(dstGraph)
+
+    // removes nodes where the program has misidentified type tokens (ie: char, int, etc) for identifiers
+    removeTypeTokens(dstGraph)
+
+  }
+
+  private def fixAmbiguousCalls(dstGraph: DiffGraphBuilder): Unit = {
     val calls = cpg.call.toList
     val operatorCalls = calls.filter(call => call.methodFullName.startsWith("<operator"))
-    val otherAmbiguous = calls.filter(call=> !call.methodFullName.startsWith("<operator") && call.typeFullName == "ANY")
-    
     fixOperatorCalls(operatorCalls, dstGraph)
-    fixOtherAmbiguousCalls(otherAmbiguous, dstGraph)
   }
 
-  def fixOperatorCalls(operatorCalls: List[Call], dstGraph: DiffGraphBuilder) :Unit = {
-    val assignmentCalls = operatorCalls.filter(call => call.methodFullName.endsWith("assignment"))
-    val pointerDerefCalls = operatorCalls.filter(call => call.methodFullName.endsWith("pointer"))
-    
+  private def fixOperatorCalls(operatorCalls: List[Call], dstGraph: DiffGraphBuilder) :Unit = {
+    val assignmentCalls: List[Call] = operatorCalls.filter(call => call.methodFullName.endsWith("assignment") && call.typeFullName.equals("ANY"))
+    val pointerDerefCalls: List[Call] = operatorCalls.filter(call => call.typeFullName.equals("void"))
+    val indexAccessCalls: List[Call] = operatorCalls.filter(call => call.methodFullName.endsWith("indirectIndexAccess"))
     // TO IMPLEMENT:
     /*
-      indirectIndexAccess
-      Addition, Multiplication, Subtraction, etc
+      Addition, Multiplication, Subtraction, etc.
       Cast
       
      */
+
+    fixAssignmentCalls(assignmentCalls, dstGraph)
+    cleanPointerTypes(pointerDerefCalls, dstGraph)
+    fixIndexAccess(indexAccessCalls, dstGraph)
   }
 
-  def fixAssignmentCalls(assignmentCalls: List[Call], dstGraph: DiffGraphBuilder) = {
+  private def fixAssignmentCalls(assignmentCalls: List[Call], dstGraph: DiffGraphBuilder): Unit = {
     assignmentCalls.foreach(call => {
       val identifiers: Iterator[Identifier] = call.astChildren.isIdentifier.cast[Identifier]
       val assignee: Identifier = identifiers.argumentIndex(1).head
@@ -44,12 +64,39 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
       dstGraph.setNodeProperty(call, PropertyNames.TYPE_FULL_NAME, assignee.typeFullName)
     })
   }
+  // in progress
+  private def fixMathOps(dstGraph: DiffGraphBuilder): Unit = {
+    /* needs to handle numeric and non-numeric separately
+    
+    1. parse argument types (either c/c++ type or user defined)
+    2. numeric types: built in, so priority is already defined, we just have to implement a function
+       to compare the types of the two args
+    3. non-numeric: search cpg for a method def w/name +, -, /, *, =. if one exists, use it's return type
+       if not, we must leave it, as we don't know
+    
+    */
+    
+    val mathOps: Iterator[Call] = cpg.call.filter(call => call.methodFullName.endsWith("addition") || call.methodFullName.endsWith("subtraction") || call.methodFullName.endsWith("multiplication") || call.methodFullName.endsWith("division"))
 
-  def fixOtherAmbiguousCalls(otherAmbiguous: List[Call], dstGraph: DiffGraphBuilder): Unit = {
+    mathOps.foreach(call => {
 
+    })
   }
+  
+  // done
+  private def fixIndexAccess(calls: List[Call], dstGraph: DiffGraphBuilder): Unit = {
+    calls.foreach(call => {
+      val arrayObj: Identifier = call.astChildren.isIdentifier.head // First identifier will always be the array indexed
+      val ret = arrayObj.typeFullName.dropRight(1) // Drop * from ptr type
+      dstGraph.setNodeProperty(call, PropertyNames.TYPE_FULL_NAME, ret)
+    })
+  }
+  // done
+  private def removeTypeTokens(dstGraph: DiffGraphBuilder): Unit = {
+    val typeToks: List[Identifier] = cpg.identifier.toList.filter(identifier => identifier.code == identifier.typeFullName)
 
-  def cleanPointerTypes(dstGraph: DiffGraphBuilder): Unit = {
-
+    typeToks.foreach(identifier => {
+      dstGraph.removeNode(identifier)
+    })
   }
 }
