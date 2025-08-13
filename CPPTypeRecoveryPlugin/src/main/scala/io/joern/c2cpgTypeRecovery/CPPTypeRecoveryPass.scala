@@ -10,21 +10,6 @@ import io.shiftleft.codepropertygraph.generated.PropertyNames
 
 class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
 
-  enum TypeNames:
-    case string, signedint, unsignedint, floating
-
-  class idType() {
-    val typeName: String
-    val isNumeric: Boolean
-    val isSigned: Boolean
-    val isFloating: Boolean
-    val minBytes: Int
-  }
-
-  object idType {
-
-  }
-
   override def run(dstGraph: DiffGraphBuilder): Unit = {
     // Fixes calls of type ANY/void (inaccurate types)
     fixAmbiguousCalls(dstGraph)
@@ -52,7 +37,6 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
      */
 
     fixAssignmentCalls(assignmentCalls, dstGraph)
-    cleanPointerTypes(pointerDerefCalls, dstGraph)
     fixIndexAccess(indexAccessCalls, dstGraph)
   }
 
@@ -75,12 +59,27 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
        if not, we must leave it, as we don't know
     
     */
-    
-    val mathOps: Iterator[Call] = cpg.call.filter(call => call.methodFullName.endsWith("addition") || call.methodFullName.endsWith("subtraction") || call.methodFullName.endsWith("multiplication") || call.methodFullName.endsWith("division"))
+    val mathOps: List[Call] = cpg.call.filter(call => call.methodFullName.endsWith("addition") || call.methodFullName.endsWith("subtraction") || call.methodFullName.endsWith("multiplication") || call.methodFullName.endsWith("division")).toList
 
-    mathOps.foreach(call => {
+    val simpleStmt: List[Call] = mathOps.filter(call => call.astChildren.isIdentifier.toList.size == call.astChildren.toList.size)
+    val compoundStmt: List[Call] = mathOps.filter(call => call.astChildren.isIdentifier.toList.size != call.astChildren.toList.size)
 
+    // TODO: implement the pass that separates numeric from non-numerics and implement the fixNumericOps function below
+    simpleStmt.foreach(call => {
+      call.astChildren.isIdentifier.toList.foreach(id => {
+        val idType: CNumType = parseCNumType(id.typeFullName)
+
+
+      })
     })
+  }
+
+  private def fixNumericOps(): Unit = {
+
+  }
+
+  private def compoundStmtPass(): Unit = {
+
   }
   
   // done
