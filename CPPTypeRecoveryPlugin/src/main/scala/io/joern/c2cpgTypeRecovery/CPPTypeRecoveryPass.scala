@@ -29,12 +29,7 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
     val assignmentCalls: List[Call] = operatorCalls.filter(call => call.methodFullName.endsWith("assignment") && call.typeFullName.equals("ANY"))
     val pointerDerefCalls: List[Call] = operatorCalls.filter(call => call.typeFullName.equals("void"))
     val indexAccessCalls: List[Call] = operatorCalls.filter(call => call.methodFullName.endsWith("indirectIndexAccess"))
-    // TO IMPLEMENT:
-    /*
-      Addition, Multiplication, Subtraction, etc.
-      Cast
-      
-     */
+
 
     fixAssignmentCalls(assignmentCalls, dstGraph)
     fixIndexAccess(indexAccessCalls, dstGraph)
@@ -50,36 +45,24 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
   }
   // in progress
   private def fixMathOps(dstGraph: DiffGraphBuilder): Unit = {
-    /* needs to handle numeric and non-numeric separately
-    
-    1. parse argument types (either c/c++ type or user defined)
-    2. numeric types: built in, so priority is already defined, we just have to implement a function
-       to compare the types of the two args
-    3. non-numeric: search cpg for a method def w/name +, -, /, *, =. if one exists, use it's return type
-       if not, we must leave it, as we don't know
-    
-    */
+
     val mathOps: List[Call] = cpg.call.filter(call => call.methodFullName.endsWith("addition") || call.methodFullName.endsWith("subtraction") || call.methodFullName.endsWith("multiplication") || call.methodFullName.endsWith("division")).toList
-
-    val simpleStmt: List[Call] = mathOps.filter(call => call.astChildren.isIdentifier.toList.size == call.astChildren.toList.size)
-    val compoundStmt: List[Call] = mathOps.filter(call => call.astChildren.isIdentifier.toList.size != call.astChildren.toList.size)
-
-    // TODO: implement the pass that separates numeric from non-numerics and implement the fixNumericOps function below
-    simpleStmt.foreach(call => {
-      call.astChildren.isIdentifier.toList.foreach(id => {
-        val idType: CNumType = parseCNumType(id.typeFullName)
-
-
-      })
-    })
+    mathOps.foreach(call => fixMathExprType(call, dstGraph))
   }
 
-  private def fixNumericOps(): Unit = {
+  private def fixMathExprType(mathOp: Call, dstGraph: DiffGraphBuilder): Unit = {
+    if (mathOp.astChildren.isIdentifier.toList.size == mathOp.astChildren.toList.size) {
+      val operandTypes: List[CNumType] = mathOp.astChildren.isIdentifier.toList.map(id => parseCNumType(id.typeFullName))
 
-  }
-
-  private def compoundStmtPass(): Unit = {
-
+      if (operandTypes(0).kind == NonNumeric || operandTypes(1).kind == NonNumeric) {
+        // Non numeric operations
+      } else {
+        val typeName: String = numTypePriority(operandTypes(0), operandTypes(1))
+        dstGraph.setNodeProperty(mathOp, PropertyNames.TYPE_FULL_NAME, typeName)
+      }
+    } else {
+      mathOp.astChildren.isCall.foreach(call => fixMathExprType(call, dstGraph))
+    }
   }
   
   // done

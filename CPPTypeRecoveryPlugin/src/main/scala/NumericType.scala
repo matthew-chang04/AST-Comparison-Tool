@@ -14,7 +14,7 @@ case object PointerType extends NumericCategory
 case object NonNumeric extends NumericCategory
 
 
-case class CNumType(kind: NumericCategory, bits: Int, isPointer: Boolean, isFloatingPoint : Boolean, isUnsigned: Boolean, typeName: String)
+case class CNumType(kind: NumericCategory, priority: Int, isPointer: Boolean, isFloatingPoint : Boolean, isUnsigned: Boolean, typeName: String)
 
 def parseCNumType(typeName: String): CNumType = {
 
@@ -23,23 +23,27 @@ def parseCNumType(typeName: String): CNumType = {
   val fixedWidthSignedPattern = """^int(8|16|32|64)_t""".r
   val fixedWidthUnsignedPattern = """^uint(8|16|32|64)_t""".r
   
-  val sizesToType: Map[Int, NumericCategory] = Map(
-    8 -> CharType,
-    16 -> IntType,
-    32 -> LongIntType,
-    64 -> LongLongIntType
+  val intPriorityToType: Map[Int, NumericCategory] = Map( // just to parse fixed width ints
+    1 -> CharType,
+    2 -> IntType,
+    3 -> LongIntType,
+    4 -> LongLongIntType,
   )
-  val typeToSize: Map[NumericCategory, Int] = Map(
+  val typeToPriority: Map[NumericCategory, Int] = Map(
     CharType -> 8,
-    IntType -> 16,
-    LongIntType -> 32,
-    LongLongIntType -> 64,
+    IntType -> 7,
+    LongIntType -> 6,
+    LongLongIntType -> 5,
+    FloatType -> 4,
+    DoubleType -> 3,
+    LongDoubleType -> 2,
+    PointerType -> 1
   )
   val kind: NumericCategory =
     if (isPointer) PointerType
     else typeName match {
-      case fixedWidthSignedPattern(bits) => sizesToType(bits.toInt)
-      case fixedWidthUnsignedPattern(bits) => sizesToType(bits.toInt)
+      case fixedWidthSignedPattern(bits) => intPriorityToType(8 * bits.toInt)
+      case fixedWidthUnsignedPattern(bits) => intPriorityToType(8 * bits.toInt)
       case "size_t" => IntType
       case "ssize_t" => IntType
 
@@ -53,7 +57,15 @@ def parseCNumType(typeName: String): CNumType = {
 
   val isUnsigned: Boolean = typeName.contains("unsigned")
   val isFloatingPoint: Boolean = kind == FloatType || kind == DoubleType || kind == LongDoubleType
-  val bits: Int = typeToSize.getOrElse(kind, 0) // if it is not an integer type, the priority is simple (ptr > long double > double > float)
+  val priority: Int = typeToPriority.getOrElse(kind, 0) // if it is not an integer type, the priority is simple (ptr > long double > double > float)
   
-  CNumType(kind, bits, isPointer, isFloatingPoint, isUnsigned, typeName)
+  CNumType(kind, priority, isPointer, isFloatingPoint, isUnsigned, typeName)
+}
+
+def numTypePriority(num1: CNumType, num2: CNumType): String = {
+  if (num1.isPointer && num2.isPointer) "UNDEF"
+  else if (num1.priority == num2.priority) {
+    if (num1.isUnsigned) num1.typeName else num2.typeName
+  } else if (num1.priority > num2.priority) num1.typeName
+  else num2.typeName
 }
