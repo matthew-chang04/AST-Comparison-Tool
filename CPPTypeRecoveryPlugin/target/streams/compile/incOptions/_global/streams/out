@@ -1,10 +1,60 @@
-[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/target/scala-3.3.1/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/CPPTypeRecoveryPlugin/target/scala-3.6.4/classes.bak[0m
 [0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/target/scala-3.3.1/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/CPPTypeRecoveryPlugin/target/scala-3.6.4/classes.bak[0m
 [0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0mRolling back changes to class files.[0m
-[0m[[0m[0mdebug[0m] [0m[0mRemoving generated classes:[0m
-[0m[[0m[0mdebug[0m] [0m[0mRestoring class files: [0m
-[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/target/scala-3.3.1/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CharType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryExt$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryExt.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongIntType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongDoubleType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericType$package$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DoubleType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongDoubleType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	IntType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongLongIntType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PointerType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	IntType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CharType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FloatType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryPass.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CNumType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongLongIntType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NonNumeric$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PointerType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DoubleType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongIntType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NonNumeric.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericCategory.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FloatType$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericType$package.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CNumType.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CharType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryExt$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryExt.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongIntType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongDoubleType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericType$package$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DoubleType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongDoubleType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	IntType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongLongIntType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PointerType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	IntType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CharType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FloatType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CPPTypeRecoveryPass.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CNumType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongLongIntType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NonNumeric$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	PointerType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	DoubleType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LongIntType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NonNumeric.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericCategory.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FloatType$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	NumericType$package.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	CNumType.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/matthewchang/graphtests/comparisontool/CPPTypeRecoveryPlugin/target/scala-3.6.4/classes.bak[0m

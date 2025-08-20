@@ -4,7 +4,7 @@ set -o pipefail
 set -o nounset
 set -eu
 
-readonly JOERN_VERSION="v1.1.234"
+readonly JOERN_VERSION="v4.0.407"
 
 if [ "$(uname)" = 'Darwin' ]; then
   # get script location
@@ -46,8 +46,8 @@ if [ ! -d "${JOERN_INSTALL}" ]; then
 
     # Fetch installer
 
-    echo "https://github.com/ShiftLeftSecurity/joern/releases/download/$JOERN_VERSION/joern-install.sh"
-    curl -L "https://github.com/ShiftLeftSecurity/joern/releases/download/$JOERN_VERSION/joern-install.sh" -o "$SCRIPT_ABS_DIR/joern-install.sh"
+    echo "https://github.com/joernio/joern/releases/download/$JOERN_VERSION/joern-install.sh"
+    wget "https://github.com/joernio/joern/releases/download/$JOERN_VERSION/joern-install.sh" -O "$SCRIPT_ABS_DIR/joern-install.sh"
 
     # Install into `joern-inst`
     chmod +x $SCRIPT_ABS_DIR/joern-install.sh
@@ -78,6 +78,6 @@ popd
 echo "Installing plugin"
 
 pushd $SCRIPT_ABS_DIR/joern-inst/joern-cli/
-  ./joern --remove-plugin querydb
-  ./joern --add-plugin ../../querydb.zip
+  ./joern --remove-plugin cpp-type-recovery
+  ./joern --add-plugin ../../cpp-type-recovery.zipx
 popd
