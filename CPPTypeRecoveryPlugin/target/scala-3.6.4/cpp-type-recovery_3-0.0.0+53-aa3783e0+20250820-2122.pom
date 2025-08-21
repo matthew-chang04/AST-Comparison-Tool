@@ -5,7 +5,7 @@
     <artifactId>cpp-type-recovery_3</artifactId>
     <packaging>jar</packaging>
     <description>cpp-type-recovery</description>
-    <version>0.0.0+48-eaa2728f+20250819-2125</version>
+    <version>0.0.0+53-aa3783e0+20250820-2122</version>
     <name>cpp-type-recovery</name>
     <organization>
         <name>UOttawa</name>

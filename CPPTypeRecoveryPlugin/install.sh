@@ -42,12 +42,15 @@ echo "Examining Joern installation..."
 if [ ! -d "${JOERN_INSTALL}" ]; then
     echo "Cannot find Joern installation at ${JOERN_INSTALL}"
     echo "Installing..."
-    check_installed "curl"
+    check_installed "wget"
 
     # Fetch installer
 
-    echo "https://github.com/joernio/joern/releases/download/$JOERN_VERSION/joern-install.sh"
-    wget "https://github.com/joernio/joern/releases/download/$JOERN_VERSION/joern-install.sh" -O "$SCRIPT_ABS_DIR/joern-install.sh"
+    echo "https://github.com/joernio/joern/releases/latest/download/joern-install.sh"
+	wget "https://github.com/joernio/joern/releases/latest/download/joern-install.sh" -O "$SCRIPT_ABS_DIR/joern-install.sh"
+
+	echo "Patching joern-install.sh for HTTP/1.1 compatibility..."
+	sed -i '' 's/curl /curl --http1.1 /g' "$SCRIPT_ABS_DIR/joern-install.sh"
 
     # Install into `joern-inst`
     chmod +x $SCRIPT_ABS_DIR/joern-install.sh
