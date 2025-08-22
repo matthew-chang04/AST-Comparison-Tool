@@ -37,50 +37,25 @@ check_installed() {
 
 readonly JOERN_INSTALL="$SCRIPT_ABS_DIR/joern-inst"
 
-echo "Examining Joern installation..."
-
 if [ ! -d "${JOERN_INSTALL}" ]; then
     echo "Cannot find Joern installation at ${JOERN_INSTALL}"
     echo "Installing..."
-    check_installed "wget"
 
-    # Fetch installer
-
-    echo "https://github.com/joernio/joern/releases/latest/download/joern-install.sh"
-	wget "https://github.com/joernio/joern/releases/latest/download/joern-install.sh" -O "$SCRIPT_ABS_DIR/joern-install.sh"
-
-	echo "Patching joern-install.sh for HTTP/1.1 compatibility..."
-	sed -i '' 's/curl /curl --http1.1 /g' "$SCRIPT_ABS_DIR/joern-install.sh"
-
-    # Install into `joern-inst`
-    chmod +x $SCRIPT_ABS_DIR/joern-install.sh
-    $SCRIPT_ABS_DIR/joern-install.sh --install-dir="$SCRIPT_ABS_DIR/joern-inst" --version=$JOERN_VERSION --without-plugins
-    rm $SCRIPT_ABS_DIR/joern-install.sh
-
-    # Create symlinks
-
-    pushd $SCRIPT_ABS_DIR
-    ln -s joern-inst/joern-cli/joern . || true
-    ln -s joern-inst/joern-cli/joern-parse . || true
-    ln -s joern-inst/joern-cli/fuzzyc2cpg.sh . || true
-    ln -s joern-inst/joern-cli/joern-scan . || true
-    popd
-
+	mkdir joern-inst
+	cd joern-inst
+	wget https://github.com/joernio/joern/releases/download/v4.0.407/joern-cli.zip
+	unzip joern-cli.zip
 fi
 
-# Build the plugin
-
-echo "Compiling (sbt createDistribution)..."
+echo "Building and installing plugin - incl. domain classes for schema extension..."
 pushd $SCRIPT_ABS_DIR
-rm -f lib
 sbt clean createDistribution
 popd
 
-# Install the plugin
-
-echo "Installing plugin"
-
-pushd $SCRIPT_ABS_DIR/joern-inst/joern-cli/
-  ./joern --remove-plugin cpp-type-recovery
-  ./joern --add-plugin ../../cpp-type-recovery.zipx
+pushd "${JOERN_INSTALL}/joern-cli"
+  ./joern --remove-plugin plugin || true
+  ./joern --add-plugin $SCRIPT_ABS_DIR/plugin.zip
 popd
+
+echo "All done! Joern and this plugin are ready to use in ${JOERN_INSTALL}. Example usage:"
+
