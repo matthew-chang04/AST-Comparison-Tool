@@ -2,6 +2,6 @@ build/
 
 CPGTrimmer/.idea
 CPGTrimmer/.bsp
-CPPTypeRecovery/.idea
-CPPTypeRecovery/.bsp
-CPPTypeRecovery/target
+CPPTypeRecoveryPlugin/.idea
+CPPTypeRecoveryPlugin/.bsp
+CPPTypeRecoveryPlugin/target
