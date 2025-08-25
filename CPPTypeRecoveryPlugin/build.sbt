@@ -26,7 +26,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.17" % Test
 )
 
-
 Compile/doc/sources := Seq.empty
 Compile/packageDoc/publishArtifact := false
 
