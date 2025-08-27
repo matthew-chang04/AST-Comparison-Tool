@@ -1,6 +1,7 @@
 package io.joern.CPGTrimmer
 
 import io.shiftleft.codepropertygraph.Cpg
+import io.shiftleft.codepropertygraph.generated.Cpg.convertPropertyForPersistence
 import io.shiftleft.codepropertygraph.generated.PropertyNames
 import io.shiftleft.codepropertygraph.generated.nodes.{Block, NewBlock}
 import io.shiftleft.passes.CpgPass
@@ -19,7 +20,9 @@ class CPGTrimmerExt extends LayerCreator {
 
   override def create(context: LayerCreatorContext): Unit = {
     val cpg = context.cpg
-    val logger = new CPGTrimLogger()
+    val blocks = cpg.all.filter(_.propertiesMap.get(PropertyNames.NODE_LABEL).equals("BLOCK")).toList
+    val emptyBlocks = blocks.filter(_.propertiesMap.get(PropertyNames.CODE).equals("<empty>")).toList
+    val logger = new CPGTrimLogger(emptyBlocks)
   }
 }
 class CPGTrimmer(cpg: Cpg) extends CpgPass(cpg){

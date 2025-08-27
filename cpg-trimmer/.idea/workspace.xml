@@ -5,134 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecd2e8b1-afff-416c-be50-2667b7d9649c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/build.sbt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/build.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/plugins.sbt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/project/target/config-classes/$0072fa45393a2e9cc342$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/project/target/config-classes/$0072fa45393a2e9cc342.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/project/target/config-classes/$0072fa45393a2e9cc342.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$00b72e03ee8694861897$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$00b72e03ee8694861897.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$00b72e03ee8694861897.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$34ed410ea887d557dfea$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$34ed410ea887d557dfea.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$34ed410ea887d557dfea.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$594620a25455d32ade9d$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$594620a25455d32ade9d.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$594620a25455d32ade9d.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$66637da299f53610076c$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$66637da299f53610076c.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$66637da299f53610076c.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$8523736c7eaec83d7f94$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$8523736c7eaec83d7f94.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$8523736c7eaec83d7f94.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$91d440b531b61599825d$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$91d440b531b61599825d.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$91d440b531b61599825d.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$922f714c7a842a460e3b$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$922f714c7a842a460e3b.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$922f714c7a842a460e3b.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$f7e2b4268b460c92f625$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$f7e2b4268b460c92f625.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/config-classes/$f7e2b4268b460c92f625.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/scala-2.12/sbt-1.0/sync/copy-resource" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/_global/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/_global/csrLogger/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/csrConfiguration/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/csrProject/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/input_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/output_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/ivyConfiguration/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/ivySbt/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/moduleSettings/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/projectDescriptors/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/scalaCompilerBridgeScope/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/_global/update/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/_global/_global/discoveredMainClasses/data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/bspReporter/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/compile/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/dependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/incOptions/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/internalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/internalDependencyClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/managedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/scalacOptions/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/unmanagedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/unmanagedClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/compile/unmanagedJars/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/dependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/exportedProducts/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/fullClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/internalDependencyClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/managedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/unmanagedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/unmanagedClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/project/target/streams/runtime/unmanagedJars/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/src/main/scala/CPGTrimmer.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/src/test/resources/basictest.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/src/test/resources/test.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/src/test/scala/CPGTrimmerTests.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/global-logging/sbt-global-log4900344668730245320.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-2.13/update/update_cache_2.13/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-2.13/update/update_cache_2.13/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.0/update/update_cache_3/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.0/update/update_cache_3/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.0/updateFull/update_cache_3/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.0/updateFull/update_cache_3/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.1/test-classes/basictest.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.1/test-classes/test.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.1/update/update_cache_3/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/scala-3.3.1/update/update_cache_3/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/_global/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/_global/csrLogger/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/_global/dumpStructure/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/csrConfiguration/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/csrProject/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/input_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/output_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/dependencyPositions/_global/streams/update_cache_3/input_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/dependencyPositions/_global/streams/update_cache_3/output_dsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/dependencyTreeIgnoreMissingUpdate/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/ivyConfiguration/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/ivySbt/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/moduleSettings/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/projectDescriptors/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/ssExtractDependencies/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/update/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/updateClassifiers/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/updateClassifiers/_global/streams/update_cache_3/inputs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/_global/updateClassifiers/_global/streams/update_cache_3/output" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/managedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/scalacOptions/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/unmanagedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/unmanagedClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/compile/unmanagedJars/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/runtime/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/runtime/managedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/runtime/unmanagedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/runtime/unmanagedClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/runtime/unmanagedJars/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/_global/_global/dependencyTreeModuleGraphStore/data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/dependencyTree/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/managedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/scalacOptions/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/unmanagedClasspath/_global/streams/export" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/unmanagedClasspath/_global/streams/out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CPGTrimmer/target/streams/test/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CPPTypeRecoveryPlugin/src/main/scala/io/joern/c2cpgTypeRecovery/CPPTypeRecoveryPass.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../CPPTypeRecoveryPlugin/src/main/scala/io/joern/c2cpgTypeRecovery/CPPTypeRecoveryPass.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,27 +51,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ScalaProjectSettings">
     <option name="intInjectionMapping">
       <map>
@@ -243,6 +116,8 @@
       <workItem from="1754531895232" duration="29000" />
       <workItem from="1754531931935" duration="1255000" />
       <workItem from="1756158262776" duration="3679000" />
+      <workItem from="1756249735153" duration="388000" />
+      <workItem from="1756250240205" duration="4655000" />
     </task>
     <servers />
   </component>

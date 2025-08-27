@@ -28,7 +28,6 @@ class CPPTypeRecoveryPass(cpg: Cpg) extends CpgPass(cpg) {
     // val pointerDerefCalls: List[Call] = operatorCalls.filter(call => call.typeFullName.equals("void"))
     val indexAccessCalls: List[Call] = operatorCalls.filter(call => call.methodFullName.endsWith("indirectIndexAccess"))
 
-
     fixAssignmentCalls(assignmentCalls, dstGraph)
     fixIndexAccess(indexAccessCalls, dstGraph)
   }
