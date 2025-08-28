@@ -1,58 +1,13 @@
-[0m[[0m[31merror[0m] [0m[0merror while loading package,[0m
-[0m[[0m[31merror[0m] [0m[0mclass file io/shiftleft/codepropertygraph/package.class is broken, reading aborted with class dotty.tools.tasty.UnpickleException[0m
-[0m[[0m[31merror[0m] [0m[0mTASTy signature has wrong version.[0m
-[0m[[0m[31merror[0m] [0m[0m expected: {majorVersion: 28, minorVersion: 3}[0m
-[0m[[0m[31merror[0m] [0m[0m found   : {majorVersion: 28, minorVersion: 4}[0m
-[0m[[0m[31merror[0m] [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0mThis TASTy file was produced by a more recent, forwards incompatible release.[0m
-[0m[[0m[31merror[0m] [0m[0mTo read this TASTy file, please upgrade your tooling.[0m
-[0m[[0m[31merror[0m] [0m[0mThe TASTy file was produced by Scala 3.4.2.[0m
-[0m[[0m[31merror[0m] [0m[0merror while loading package,[0m
-[0m[[0m[31merror[0m] [0m[0mclass file io/shiftleft/semanticcpg/package.class is broken, reading aborted with class dotty.tools.tasty.UnpickleException[0m
-[0m[[0m[31merror[0m] [0m[0mTASTy signature has wrong version.[0m
-[0m[[0m[31merror[0m] [0m[0m expected: {majorVersion: 28, minorVersion: 3}[0m
-[0m[[0m[31merror[0m] [0m[0m found   : {majorVersion: 28, minorVersion: 4}[0m
-[0m[[0m[31merror[0m] [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0mThis TASTy file was produced by a more recent, forwards incompatible release.[0m
-[0m[[0m[31merror[0m] [0m[0mTo read this TASTy file, please upgrade your tooling.[0m
-[0m[[0m[31merror[0m] [0m[0mThe TASTy file was produced by Scala 3.4.2.[0m
-[0m[[0m[31merror[0m] [0m[0merror while loading package,[0m
-[0m[[0m[31merror[0m] [0m[0mclass file io/shiftleft/semanticcpg/language/package.class is broken, reading aborted with class dotty.tools.tasty.UnpickleException[0m
-[0m[[0m[31merror[0m] [0m[0mTASTy signature has wrong version.[0m
-[0m[[0m[31merror[0m] [0m[0m expected: {majorVersion: 28, minorVersion: 3}[0m
-[0m[[0m[31merror[0m] [0m[0m found   : {majorVersion: 28, minorVersion: 4}[0m
-[0m[[0m[31merror[0m] [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0mThis TASTy file was produced by a more recent, forwards incompatible release.[0m
-[0m[[0m[31merror[0m] [0m[0mTo read this TASTy file, please upgrade your tooling.[0m
-[0m[[0m[31merror[0m] [0m[0mThe TASTy file was produced by Scala 3.4.2.[0m
-[0m[[0m[31merror[0m] [0m[0merror while loading Cpg,[0m
-[0m[[0m[31merror[0m] [0m[0mclass file io/shiftleft/codepropertygraph/Cpg.class is broken, reading aborted with class dotty.tools.tasty.UnpickleException[0m
-[0m[[0m[31merror[0m] [0m[0mTASTy signature has wrong version.[0m
-[0m[[0m[31merror[0m] [0m[0m expected: {majorVersion: 28, minorVersion: 3}[0m
-[0m[[0m[31merror[0m] [0m[0m found   : {majorVersion: 28, minorVersion: 4}[0m
-[0m[[0m[31merror[0m] [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0mThis TASTy file was produced by a more recent, forwards incompatible release.[0m
-[0m[[0m[31merror[0m] [0m[0mTo read this TASTy file, please upgrade your tooling.[0m
-[0m[[0m[31merror[0m] [0m[0mThe TASTy file was produced by Scala 3.4.2.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimmer.scala:10:22 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m10 |[0m[33mclass[0m [35mCPGTrimmer[0m([36mcpg[0m: [35mCpg[0m) [33mextends[0m [35mCpgPass[0m(Cpg){[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                      ^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                      Not found: type Cpg[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- Error: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimmer.scala:12:6 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m12 |[0m[33mclass[0m [35mCPGTrimmerExt[0m [33mextends[0m [35mLayerCreator[0m {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0mclass CPGTrimmerExt needs to be abstract, since def create[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m  (context: io.shiftleft.semanticcpg.layers.LayerCreatorContext, storeUndoInfo:[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Boolean): Unit in [33mclass[0m [35mLayerCreator[0m in [33mpackage[0m [35mio.shiftleft.semanticcpg.layers[0m is not defined [0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E038] Declaration Error: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimmer.scala:16:15 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m16 |[0m  [33moverride[0m [33mdef[0m create(context: LayerCreatorContext): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m               ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m [33mmethod[0m [35mcreate[0m has a different signature than the overridden declaration[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
 [0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0merror while loading CpgPass,[0m
-[0m[[0m[31merror[0m] [0m[0mclass file io/shiftleft/passes/CpgPass.class is broken, reading aborted with class dotty.tools.tasty.UnpickleException[0m
-[0m[[0m[31merror[0m] [0m[0mTASTy signature has wrong version.[0m
-[0m[[0m[31merror[0m] [0m[0m expected: {majorVersion: 28, minorVersion: 3}[0m
-[0m[[0m[31merror[0m] [0m[0m found   : {majorVersion: 28, minorVersion: 4}[0m
-[0m[[0m[31merror[0m] [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0mThis TASTy file was produced by a more recent, forwards incompatible release.[0m
-[0m[[0m[31merror[0m] [0m[0mTo read this TASTy file, please upgrade your tooling.[0m
-[0m[[0m[31merror[0m] [0m[0mThe TASTy file was produced by Scala 3.4.2.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimmer.scala:10:35 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m10 |[0m[33mclass[0m [35mCPGTrimmer[0m([36mcpg[0m: [35mCpg[0m) [33mextends[0m [35mCpgPass[0m(Cpg){[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                   ^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                   Not found: type CpgPass[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m7 errors found[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

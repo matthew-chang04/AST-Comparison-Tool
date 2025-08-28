@@ -1,35 +1,30 @@
 package io.joern.CPGTrimmer
 
-import io.shiftleft.codepropertygraph.Cpg
-import io.shiftleft.codepropertygraph.generated.Cpg.convertPropertyForPersistence
-import io.shiftleft.codepropertygraph.generated.PropertyNames
-import io.shiftleft.codepropertygraph.generated.nodes.{Block, NewBlock}
-import io.shiftleft.passes.CpgPass
-import io.shiftleft.codepropertygraph.generated.DiffGraphBuilder
 import io.shiftleft.semanticcpg.language.*
-import io.shiftleft.semanticcpg.layers.{LayerCreator, LayerCreatorContext}
+import io.shiftleft.semanticcpg.layers.{LayerCreator, LayerCreatorContext, LayerCreatorOptions}
+import io.shiftleft.codepropertygraph.generated.{Cpg, Properties}
+import io.shiftleft.codepropertygraph.generated.NodeTypes
 
-object CPGTrimmerExt {
+
+object CPGTrimmer {
   val overlayName = "CPG Trimmer"
   val description = "Logs context for unnecessary empty nodes in a Joern CPG"
+
+  def defaultOpts = CPGTrimmerOpts(".")
 }
 
-class CPGTrimmerExt extends LayerCreator {
-  override val overlayName = CPGTrimmerExt.overlayName
-  override val description = CPGTrimmerExt.description
+case class CPGTrimmerOpts(var pathToRepo: String)
+  extends LayerCreatorOptions {}
+
+class CPGTrimmer(options: CPGTrimmerOpts) extends LayerCreator {
+  override val overlayName: String = CPGTrimmer.overlayName
+  override val description: String = CPGTrimmer.description
 
   override def create(context: LayerCreatorContext): Unit = {
     val cpg = context.cpg
-    val blocks = cpg.all.filter(_.propertiesMap.get(PropertyNames.NODE_LABEL).equals("BLOCK")).toList
-    val emptyBlocks = blocks.filter(_.propertiesMap.get(PropertyNames.CODE).equals("<empty>")).toList
+    val blocks = cpg.graph.nodes(NodeTypes.BLOCK).toList
+    val emptyBlocks = blocks.filter(node => node.property(Properties.Code).equals("<empty>"))
     val logger = new CPGTrimLogger(emptyBlocks)
+    logger.logNodes()
   }
 }
-class CPGTrimmer(cpg: Cpg) extends CpgPass(cpg){
-
-  def run(dstBuilder: DiffGraphBuilder) : Unit = {
-
-  }
-  def removeEmptyBlocks(dstBuilder: DiffGraphBuilder): Unit = {
-    val emptyNodes: List[overflowdb.Node] = cpg.graph.nodes("BLOCK").toList
-  }

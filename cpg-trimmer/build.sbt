@@ -1,23 +1,19 @@
 name := "cpg-trimmer"
 ThisBuild/organization := "io.joern"
-ThisBuild/scalaVersion := "3.4.2"
+ThisBuild/scalaVersion := "3.6.4"
 
 // Use mixed versions that actually exist for Scala 3
-val consoleVersion = "2.0.394"        // Latest console version
-val semanticCpgVersion = "1.1.1666"   // Available semanticcpg version
-val x2cpgVersion = "2.0.51"           // Available x2cpg version
-val dataflowVersion = "1.1.1522"      // Available dataflow version
-
+val joernVersion = "4.0.397"
 enablePlugins(JavaAppPackaging)
 
 libraryDependencies ++= Seq(
-  ("io.joern" %% "console" % consoleVersion)
+  ("io.joern" %% "console" % joernVersion)
     .exclude("org.gradle", "gradle-tooling-api"), // Exclude from all deps
-  ("io.joern" %% "semanticcpg" % semanticCpgVersion)
+  ("io.joern" %% "semanticcpg" % joernVersion)
     .exclude("org.gradle", "gradle-tooling-api"),
-  ("io.joern" %% "x2cpg" % x2cpgVersion)
+  ("io.joern" %% "x2cpg" % joernVersion)
     .exclude("org.gradle", "gradle-tooling-api"),
-  ("io.joern" %% "dataflowengineoss" % dataflowVersion)
+  ("io.joern" %% "dataflowengineoss" % joernVersion)
     .exclude("org.gradle", "gradle-tooling-api"),
 
   // Add missing dependency for createDistribution task

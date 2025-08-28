@@ -1,28 +1,48 @@
 package io.joern.CPGTrimmer
 
-import java.util.Iterator
-import io.shiftleft.codepropertygraph.generated.PropertyNames
-import io.shiftleft.codepropertygraph.generated.GeneratedNodeStarterExt
-import io.shiftleft.codepropertygraph.generated.Cpg
-import io.shiftleft.semanticcpg.language
-import io.shiftleft.codepropertygraph.generated.nodes.*
+import io.shiftleft.codepropertygraph.generated.nodes._
 import org.slf4j.LoggerFactory
+import flatgraph.GNode
 
-class CPGTrimLogger(emptyBlocks: List[StoredNode]) {
+class CPGTrimLogger(emptyBlocks: List[GNode]) {
   private val logger = LoggerFactory.getLogger(getClass[CPGTrimLogger])
 
-  def logNodes(cpg: Cpg): Unit = {
+  def logNodes(): Unit = {
     emptyBlocks.foreach(node => logNodeDetails(node))
   }
 
-  def logNodeDetails(node: StoredNode): Unit = {
-    val cfgChildren = node.out("CFG")
-    val astChildren = node._astOut.toList.foreach(child => )
+  private def logNodeDetails(node: GNode): Unit = {
+    val text = getNodeString(node)
+    logger.info(text)
+  }
+
+  private def getNodeString(node: GNode): String = {
+
+    // TODO: FIND GNODE equivalent of _astIn
+    val parent: String = if (node. .toList.size > 1) {
+      "Multiple Parent Nodes"
+    } else {
+      s"""
+         |Parent ID = ${node._astIn.toList.head.id()}
+         |  Parent Type = ${node._astIn.toList.head.label}
+         |""".stripMargin
+    }
+
+    val children: List[String] = node._astOut.toList.map(node => {
+      s"""
+         |Child ID = ${node.id()}
+         |  Child Type = ${node.label}
+         |""".stripMargin
+    })
+
     val text =
       s"""
          |Node ID = ${node.id()}
-         |Node Children: ${node._astOut.toList.mkString(", ")}
+         |  Node Type = ${node.label}
+         |  Parent = ${parent}
+         |  Children = ${children.mkString(", ")}
+         |  Code = ${node.propertiesMap.getOrDefault("code")}
          |""".stripMargin
+    text
   }
-  logger.
 }
