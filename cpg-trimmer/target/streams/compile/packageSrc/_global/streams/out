@@ -1,7 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/target/scala-3.6.4/cpg-trimmer_3-0.0.0+60-3de49d9c+20250827-2158-sources.jar ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	io/joern/CPGTrimmer/CPGTrimLogger.scala[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimLogger.scala[0m
-[0m[[0m[0mdebug[0m] [0m[0m	io/joern/CPGTrimmer/CPGTrimmer.scala[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/src/main/scala/io/joern/CPGTrimmer/CPGTrimmer.scala[0m
-[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
