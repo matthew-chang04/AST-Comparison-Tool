@@ -2,7 +2,7 @@ package io.joern.CPGTrimmer
 
 import io.shiftleft.semanticcpg.language.*
 import io.shiftleft.semanticcpg.layers.{LayerCreator, LayerCreatorContext, LayerCreatorOptions}
-import io.shiftleft.codepropertygraph.generated.{Cpg, Properties}
+import io.shiftleft.codepropertygraph.generated.Properties
 import io.shiftleft.codepropertygraph.generated.NodeTypes
 
 
@@ -24,7 +24,7 @@ class CPGTrimmer(options: CPGTrimmerOpts) extends LayerCreator {
     val cpg = context.cpg
     val blocks = cpg.graph.nodes(NodeTypes.BLOCK).toList
     val emptyBlocks = blocks.filter(node => node.property(Properties.Code).equals("<empty>"))
-    val logger = new CPGTrimLogger(emptyBlocks)
+    val logger = new CPGTrimLogger(emptyBlocks, cpg)
     logger.logNodes()
   }
 }

@@ -1,10 +1,13 @@
 package io.joern.CPGTrimmer
 
-import io.shiftleft.codepropertygraph.generated.nodes._
+import io.shiftleft.semanticcpg.language.*
+import io.shiftleft.codepropertygraph.generated.{Cpg, Properties}
+import io.shiftleft.codepropertygraph.generated.nodes
 import org.slf4j.LoggerFactory
 import flatgraph.GNode
+import io.shiftleft.codepropertygraph.generated.nodes.StoredNode
 
-class CPGTrimLogger(emptyBlocks: List[GNode]) {
+class CPGTrimLogger(emptyBlocks: List[GNode], cpg: Cpg) {
   private val logger = LoggerFactory.getLogger(getClass[CPGTrimLogger])
 
   def logNodes(): Unit = {
@@ -19,16 +22,16 @@ class CPGTrimLogger(emptyBlocks: List[GNode]) {
   private def getNodeString(node: GNode): String = {
 
     // TODO: FIND GNODE equivalent of _astIn
-    val parent: String = if (node. .toList.size > 1) {
-      "Multiple Parent Nodes"
-    } else {
-      s"""
-         |Parent ID = ${node._astIn.toList.head.id()}
-         |  Parent Type = ${node._astIn.toList.head.label}
-         |""".stripMargin
-    }
+    val nodeContext: StoredNode = cpg.id(node.id()).head
 
-    val children: List[String] = node._astOut.toList.map(node => {
+    val parentsList: List[String] = nodeContext._astIn.toList.map(snode =>
+      s"""
+         |Parent ID = ${snode.id()}
+         |  Parent Type = ${snode.label()}
+         |""".stripMargin
+    )
+
+    val childrenList: List[String] = nodeContext._astOut.toList.map(node => {
       s"""
          |Child ID = ${node.id()}
          |  Child Type = ${node.label}
@@ -38,10 +41,10 @@ class CPGTrimLogger(emptyBlocks: List[GNode]) {
     val text =
       s"""
          |Node ID = ${node.id()}
-         |  Node Type = ${node.label}
-         |  Parent = ${parent}
-         |  Children = ${children.mkString(", ")}
-         |  Code = ${node.propertiesMap.getOrDefault("code")}
+         |  Node Type = ${node.label()}
+         |  Parent = ${parentsList.mkString(",\n\t")}
+         |  Children = ${childrenList.mkString(",\n\t ")}
+         |  Code = ${nodeContext.property(Properties.Code)}
          |""".stripMargin
     text
   }
