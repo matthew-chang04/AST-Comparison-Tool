@@ -1,15 +1,2 @@
-[debug] Created transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/project/target/scala-2.12/sbt-1.0/classes.bak
-[debug] About to delete class files:
-[debug] We backup class files:
-[debug] Registering generated classes:
-[debug] 	MergeSchemaTaskGlobalState.class
-[debug] 	CodeGenGlobalState$.class
-[debug] 	FileUtils.class
-[debug] 	MergeSchemaTaskGlobalState$.class
-[debug] 	GenerateProtobufTaskGlobalState$.class
-[debug] 	CopyLatestCpgProtoTaskGlobalState$.class
-[debug] 	GenerateProtobufTaskGlobalState.class
-[debug] 	CodeGenGlobalState.class
-[debug] 	CopyLatestCpgProtoTaskGlobalState.class
-[debug] 	FileUtils$.class
-[debug] Removing the temporary directory used for backing up class files: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/project/target/scala-2.12/sbt-1.0/classes.bak
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/project/target/scala-2.12/sbt-1.0/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/matthewchang/graphtests/comparisontool/cpg-trimmer/project/target/scala-2.12/sbt-1.0/classes.bak[0m
