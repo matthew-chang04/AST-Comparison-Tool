@@ -10,7 +10,7 @@ To address problems in graph generation on Joern, I implemeted a plugin that aug
 
 This plugin includes the scaffolding for a graph-editing pass as well as a logger. When used, it outputs a log file with context on the empty nodes found in a cpg (listing their Id's, type, and information about their parents and child nodes).
 
-# Usage
+### Usage
 
 Joern Installation
 ```
