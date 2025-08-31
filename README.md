@@ -1,4 +1,4 @@
-# AST Parser and Comparison Tool
+# Graph Extraction Tools
 ## Underlying Project
 Static Analysis tools like Joern, SVF, and Fraunhofer's CPG tend to contain flaws that can inhibit program analysis. Our project, Supervised by Prof. Paria Shirani at the University of Ottawa, was to find common flaws in these generated graphs, and implement tools that can detect and fix these in generation.</p>
 
