@@ -1,7 +1,6 @@
-build/
-
-*/.idea/*
-*/.bsp/*
-*/target/*
-*/project/*
-*/*.zip
+# Build artifacts
+target/
+*.zip
+cpg-trimmer/target/
+*.log
+workspace/
