@@ -22,7 +22,7 @@ class CPGTrimmer(options: CPGTrimmerOpts) extends LayerCreator {
 
   override def create(context: LayerCreatorContext): Unit = {
     val cpg = context.cpg
-    val empty = cpg.graph.nodesWithProperty(Properties.Code.toString, "<empty>").toList
+    val empty = cpg.graph.nodesWithProperty("code", "<empty>").toList
     // val blocks = cpg.graph.nodes(NodeTypes.BLOCK).toList
     // val emptyBlocks = blocks.filter(node => node.property(Properties.Code).equals("<empty>"))
 
